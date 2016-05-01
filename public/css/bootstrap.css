@@ -6853,4 +6853,10 @@ button.close {
   /*background-color: rgba(231, 194, 11, 0.47);*/
   border-radius: 10px;
 }
+.share{
+  text-align: center;
+}
+.icon-redes{
+  text-align: center;
+}
 

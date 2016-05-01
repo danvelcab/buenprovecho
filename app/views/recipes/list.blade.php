@@ -22,7 +22,7 @@
                                 </script>
                         </div>
                         <div>
-                                <button type="submit" class="btn btn-primary center-block btn-lg">Buscar recetas</button>
+                                <button type="submit" class="btn btn-primary center-block btn-lg" onClick="_gaq.push(['_trackEvent', 'busqueda_diferente', '', '']);">Buscar recetas</button>
                         </div>
                 </form>
         </div>
@@ -73,7 +73,9 @@
                                                                         @endforeach
                                                                 </div>
                                                                 <div class="button-result">
-                                                                        <a href="{{$recipes[$i-1]->url}}" target="_blank"><button class="btn btn-primary btn-lg">Ver receta</button></a>
+                                                                        <a href="{{$recipes[$i-1]->url}}" target="_blank">
+                                                                                <button class="btn btn-primary btn-lg" onClick="_gaq.push(['_trackEvent', 'receta', 'cookpad', '1']);">Ver receta</button>
+                                                                        </a>
                                                                 </div>
                                                         </div>
                                                 </div>
@@ -115,7 +117,7 @@
                 @endif
                 @endfor
                 <div>
-                        <button type="submit" class="btn btn-primary center-block btn-lg">Buscar más recetas</button>
+                        <button type="submit" class="btn btn-primary center-block btn-lg" onClick="_gaq.push(['_trackEvent', 'segundas_busquedas', '', '']);">Buscar más recetas</button>
                 </div>
         </form>
         </div>

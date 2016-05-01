@@ -52,6 +52,16 @@ return array(
 			'prefix'   => '',
 		),
 
+//		'mysql' => array(
+//			'driver'    => 'mysql',
+//			'host'      => 'mysql.hostinger.es',
+//			'database'  => 'u306152639_buenp',
+//			'username'  => 'u306152639_buenp',
+//			'password'  => 'BuEnPrOvEcHo',
+//			'charset'   => 'utf8',
+//			'collation' => 'utf8_unicode_ci',
+//			'prefix'    => '',
+//		),
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',

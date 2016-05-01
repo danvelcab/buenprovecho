@@ -27,7 +27,8 @@
                         </div>
 
                         <div>
-                                <button type="submit" class="btn btn-primary center-block btn-lg">Buscar recetas</button>
+                                <button type="submit" onClick="_gaq.push(['_trackEvent', 'buscar_landing', '', '']);" class="btn btn-primary center-block btn-lg" >
+                                        Buscar recetas</button>
                         </div>
                 </form>
         </div>
