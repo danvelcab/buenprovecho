@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/app/controllers/ScrappingController.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/database/migrations/2017_02_25_133520_create_ingredients_configurations_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/database/migrations/2017_02_25_133520_create_ingredients_recipes_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/index.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/recipes/list.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/template.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/public/img/list/cook2.jpg" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>
