@@ -6764,8 +6764,13 @@ button.close {
 
 .title-header {
   color: #f9f9ff;
-  font-size: 60px;
+  font-size:60px;
   text-align: center;
+}
+@media screen and (max-width: 568px) {
+  .title-header {
+    font-size:30px;
+  }
 }
 
 .text-jumbotron {
