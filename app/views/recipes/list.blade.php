@@ -92,7 +92,7 @@
         <form method="post"
               action="{{URL::asset('findRecipesWithSuggestions')}}">
                 <div class = "sugerencias bg-warning">
-                        <div class="count-results"> ¿Puedes decirnos si cuentas con algunos de estos ingredientes para obtener mejores resultados?</div>
+                        <div class="count-results"> Hemos encontrado recetas que también contienen estos ingredientes. ¿Cuentas con alguno de ellos?</div>
                         @foreach($selected_ingredients as $ingredient)
                                 <input name = "{{$ingredient}}" hidden value = 'on'>
                         @endforeach

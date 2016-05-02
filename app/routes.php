@@ -16,5 +16,6 @@ Route::get('/', 'HomeController@showWelcome');
 Route::post('/findRecipes', 'RecipeController@findRecipes');
 Route::post('/findRecipesWithSuggestions', 'RecipeController@findRecipesWithSuggestions');
 Route::get('/findAllRecipes', 'RecipeController@findAllRecipes');
-Route::get('/cookpad', 'ScrappingController@cookpad');
-Route::get('/cookpadRecipes', 'ScrappingController@cookpadRecipes');
+//Route::get('/cookpad', 'ScrappingController@cookpad');
+Route::get('/reviseRecipes', 'ScrappingController@reviseRecipes');
+//Route::get('/cookpadRecipes', 'ScrappingController@cookpadRecipes');

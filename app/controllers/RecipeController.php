@@ -75,9 +75,9 @@ class RecipeController extends BaseController {
 			}else{
 				$suggestions = \Ingredients\Ingredients::find(array_keys($ingredients_more_used));
 			}
-			$ingredients = \Ingredients\Ingredients::all();
 			$selected_ingredients_object = \Ingredients\Ingredients::find($selected_ingredients);
 		}
+		$ingredients = \Ingredients\Ingredients::all();
 		return View::make('recipes.list', array('ingredients' => $ingredients, 'selected_ingredients' => $selected_ingredients,
 			'selected_ingredients_object' => $selected_ingredients_object, 'recipes' => $recipes_final, 'sugerencias' => $suggestions));
 	}
@@ -147,10 +147,14 @@ class RecipeController extends BaseController {
 
 	public function findAllRecipes()
 	{
+		$selected_ingredients = array();
+		$selected_ingredients_object = array();
+		$suggestions = array();
 		$recipes_final = \Recipes\Recipes::all();
 		$ingredients = \Ingredients\Ingredients::all();
 		$selectes_ingredients = \Ingredients\Ingredients::find(array(168,169,170));
-		return View::make('recipes.list', array('ingredients' => $ingredients, 'selected_ingredients' => $selectes_ingredients,'recipes' => $recipes_final));
+		return View::make('recipes.list', array('ingredients' => $ingredients, 'selected_ingredients' => $selected_ingredients,
+			'selected_ingredients_object' => $selected_ingredients_object, 'recipes' => $recipes_final, 'sugerencias' => $suggestions));
 	}
 
 }

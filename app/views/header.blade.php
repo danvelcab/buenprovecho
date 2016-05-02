@@ -4,7 +4,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <div class="navbar-brand">
-                Buen provecho (Beta)
+                Buen provecho <span class="beta">(Beta)</span>
             </div>
         </div>
     </div>

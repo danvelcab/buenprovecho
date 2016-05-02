@@ -218,7 +218,7 @@ class ScrappingController extends BaseController {
 		$index_parecidos = 0;
 		$index_no_parecidos = 0;
 		//en el futuro hasta 81.
-		for($n = 20; $n<=29; $n++){
+		for($n = 70; $n<=81; $n++){
 			$new_fichero = file_get_contents("https://cookpad.com/es?page=".$n);
 			$more_recipes = true;
 			$urls = array();
@@ -325,7 +325,7 @@ class ScrappingController extends BaseController {
 			->whereNotNull('ingredients_id')
 			->get();
 		//en el futuro hasta 81.
-		for($n = 21; $n<=21; $n++){
+		for($n =21; $n<=81; $n++){
 			$new_fichero = file_get_contents("https://cookpad.com/es?page=".$n);
 			$more_recipes = true;
 			$urls = array();
@@ -356,7 +356,6 @@ class ScrappingController extends BaseController {
 			foreach($urls as $url){
 				$num_ingredients = 0;
 				$new_fichero = file_get_contents($url['url']);
-
 				$pos_img = strpos($new_fichero, "tofu_image");
 				$new_fichero = substr($new_fichero, $pos_img+5, strlen($new_fichero));
 				$pos_img = strpos($new_fichero, "src");
@@ -394,6 +393,7 @@ class ScrappingController extends BaseController {
 				$recipe->url = $url['url'];
 				$recipe->time = $time;
 				$recipe->image_url = $foto;
+				$recipe->description = "".$n;
 				$recipe->save();
 
 				foreach($ingredients as $i){
@@ -417,25 +417,36 @@ class ScrappingController extends BaseController {
 						$exist_sub_ingredient = false;
 						foreach($sub_ingredients as $si){
 							if(strpos(" ".$i, $si->search)){
-								$exist_sub_ingredient = true;
-								$recipe->ingredients()->attach($si->id);
-								$num_ingredients++;
-								$recipe->save();
-								break;
+								try{
+									$recipe->ingredients()->attach($si->id);
+									$recipe->save();
+									$num_ingredients++;
+									$exist_sub_ingredient = true;
+									break;
+								}catch (Exception $e){
+
+								}
 							}
 						}
 						if(!$exist_sub_ingredient){
-							$recipe->ingredients()->attach($ingredients_parecidos[$index]->id);
-							$num_ingredients++;
-							$recipe->save();
+							try{
+								$recipe->ingredients()->attach($ingredients_parecidos[$index]->id);
+								$recipe->save();
+								$num_ingredients++;
+							}catch (Exception $e){
+							}
+
 						}
 					}else{
 						foreach($subIngredientsDB as $si){
 							if(strpos(" ".$i, $si->search)){
-								$recipe->ingredients()->attach($si->id);
-								$num_ingredients++;
-								$recipe->save();
-								break;
+								try{
+									$recipe->ingredients()->attach($si->id);
+									$recipe->save();
+									$num_ingredients++;
+									break;
+								}catch (Exception $e){
+								}
 							}
 						}
 					}
@@ -503,5 +514,95 @@ class ScrappingController extends BaseController {
 
 		$text = preg_replace(array_keys($patron),array_values($patron),$text);
 		return $text;
+	}
+	public function reviseRecipes(){
+		$recipes = DB::table('recipes')->where('time',"==",0)->where('num_ingredients',"<",4)->get();
+		$ingredientsDB = DB::table('ingredients')
+			->whereNull('ingredients_id')
+			->get();
+		$subIngredientsDB = DB::table('ingredients')
+			->whereNotNull('ingredients_id')
+			->get();
+		foreach($recipes as $recipe){
+			$num_ingredients = 0;
+			$new_fichero = file_get_contents($recipe->url);
+			$more_ingredients = true;
+			$ingredients = array();
+			while($more_ingredients){
+				$pos_ingredient = strpos($new_fichero, "ingredient__attribute--name");
+				$new_fichero = substr($new_fichero, $pos_ingredient+29, strlen($new_fichero));
+				$pos_end_ingredient = strpos($new_fichero, '</span>');
+				$ingredient = substr($new_fichero,0,$pos_end_ingredient);
+				$new_fichero = substr($new_fichero, $pos_end_ingredient, strlen($new_fichero));
+				$pos_ingredient = strpos($new_fichero, "ingredient__attribute--name");
+				array_push($ingredients, $ingredient);
+				if(!$pos_ingredient){
+					$more_ingredients = false;
+				}
+			}
+			//				$recipe = new Recipes();
+			$recipe = \Recipes\Recipes::find($recipe->id);
+
+			foreach($ingredients as $i){
+				$i = strtolower($i);
+				$i = $this->elimina_acentos($i);
+				$exist_ingredient = false;
+				$ingredients_parecidos = array();
+				foreach($ingredientsDB as $ingredientDB){
+					if(strpos(" ".$i,$ingredientDB->search) != false) {
+						array_push($ingredients_parecidos, $ingredientDB);
+					}
+				}
+				$index = 0;
+				for($o = 0;$o<sizeof($ingredients_parecidos);$o++){
+					if(strlen($ingredients_parecidos[$o]->search)>strlen($ingredients_parecidos[$index]->search)){
+						$index = $o;
+					}
+				}
+				if(sizeof($ingredients_parecidos)>0){
+					$sub_ingredients = DB::table('ingredients')->where('ingredients_id','=',$ingredients_parecidos[$index]->id)->get();
+					$exist_sub_ingredient = false;
+					foreach($sub_ingredients as $si){
+						if(strpos(" ".$i, $si->search)){
+							$exist_sub_ingredient = true;
+							$num_ingredients++;
+							try{
+								$recipe->ingredients()->attach($si->id);
+								$recipe->save();
+							}catch (Exception $e){
+
+							}
+							break;
+						}
+					}
+					if(!$exist_sub_ingredient){
+						$num_ingredients++;
+						try{
+							$recipe->ingredients()->attach($ingredients_parecidos[$index]->id);
+							$recipe->save();
+						}catch(Exception $e){
+
+						}
+
+					}
+				}else{
+					foreach($subIngredientsDB as $si){
+						if(strpos(" ".$i, $si->search)){
+							$num_ingredients++;
+							try{
+								$recipe->ingredients()->attach($si->id);
+								$recipe->save();
+							}catch (Exception $e){
+
+							}
+							break;
+						}
+					}
+				}
+			}
+			$recipe->num_ingredients = $num_ingredients;
+			$recipe->save();
+		}
+		echo "TERMINADO";
 	}
 }

@@ -6860,3 +6860,14 @@ button.close {
   text-align: center;
 }
 
+
+@font-face {
+
+  font-family: cook-milk;
+
+  src: url(../fonts/cookies&milk-regular.ttf) format(‘truetype’);
+
+}
+.beta{
+  font-size: 12px;
+}

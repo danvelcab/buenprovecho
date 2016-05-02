@@ -40,16 +40,16 @@
         <div class="row">
                 <div class="col-lg-12">
                         <h1 class="page-header">
-                                ¿No sabes que cocinar? Nosotros te ayudamos ...
+                                ¿No sabes qué cocinar? Te lo ponemos fácil ...
                         </h1>
                 </div>
                 <div class="col-md-4">
                         <div class="panel panel-default">
                                 <div class="panel-heading">
-                                        <h4><i class="glyphicon glyphicon-apple"></i> Dinos que tienes en la cocina </h4>
+                                        <h4><i class="glyphicon glyphicon-apple"></i> Dinos qué tienes en la cocina </h4>
                                 </div>
                                 <div class="panel-body">
-                                        <p>Mira dentro de tu frigorífico y dinos que ingredientes tienes. Buen provecho es la mejor forma de aprovechar tus alimentos. Elige entre más de 1000 tipos de ingredientes y todo tipo de comida (fast food, tex-mex ...)</p>
+                                        <p>Mira dentro de tu frigorífico y dinos qué ingredientes tienes. Buen provecho es la mejor forma de aprovechar tus alimentos. Elige entre más de 1000 tipos de ingredientes y todo tipo de platos (cocina tradicional, fast food, tex-mex ...)</p>
                                 </div>
                         </div>
                 </div>
@@ -59,7 +59,7 @@
                                         <h4><i class="glyphicon glyphicon-book"></i> Elige una receta</h4>
                                 </div>
                                 <div class="panel-body">
-                                        <p>Te propondremos recetas que podrás elaborar a partir de los ingredientes con los que cuentas. Te ahorramos pensar qué cocinar. Solo tienes que elegir la que más te guste</p>
+                                        <p>Te propondremos recetas que podrás elaborar a partir de los ingredientes que introduzcas. Te ahorramos pensar qué cocinar. Solo tienes que elegir la que más te guste</p>
                                 </div>
                         </div>
                 </div>
@@ -69,7 +69,7 @@
                                         <h4><i class="glyphicon glyphicon-hourglass"></i> ¡Buen provecho!</h4>
                                 </div>
                                 <div class="panel-body">
-                                        <p>Solo te queda empezar a cocinar y aprovechar la comida que tienes en tu nevera. Buen provecho</p>
+                                        <p>Solo te queda empezar a cocinar y sacarle el mejor partido a tus alimentos. ¡Buen provecho!</p>
                                 </div>
                         </div>
                 </div>

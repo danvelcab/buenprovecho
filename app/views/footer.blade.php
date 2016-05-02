@@ -6,7 +6,7 @@
             <p>Copyright &copy; Buen provecho 2016</p>
         </div>
         <div id="share" class = "share col-lg-6">
-            <h4>Comparte Buen provecho con sus conocidos:</h4><br>
+            <h4>Comparte "Buen provecho" con tus conocidos:</h4><br>
             <div class="icon-redes">
                 <a href="javascript:var dir=window.document.URL;var tit=window.document.title;var tit2=encodeURIComponent(tit);window.location.href=('https://www.facebook.com/Buen-provecho-1727372830841223/');"><img src="https://norfipc.com/img/logos/icon-60-facebook.png" width="60" height="60" alt="Compartir" title="Da un clic para compartir esta página en Facebook"></a>
                 <a href="javascript:var dir=window.document.URL;var tit=window.document.title;var tit2=encodeURIComponent(tit);window.location.href=('http://twitter.com/?status='+tit2+'%20'+dir+'');"><img src="https://norfipc.com/img/logos/icon-60-twitter.png" width="60" height="60" alt="Compartir" title="Da un clic para compartir esta página en Twitter"></a>
