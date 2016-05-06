@@ -15,6 +15,61 @@ class RecipeController extends BaseController {
 	|
 	*/
 
+	public function findIngredients(){
+		$recipes = DB::table('recipes')->join('ingredients_recipes','ingredients_recipes.recipes_id','=','recipes.id');
+		$suggestions = array();
+		if(isset(Input::all()['ingredients'])){
+			$selected_ingredients = Input::all()['ingredients'];
+			if(sizeof($selected_ingredients)<3){
+				return array('error' => true, 'message' => 'Tienes que indicar almenos 4 ingredientes');
+			}
+			foreach($selected_ingredients as $ingredient){
+				$recipes = $recipes->orWhere('ingredients_recipes.ingredients_id','=',$ingredient);
+			}
+			$recipes = $recipes->get();
+			$recipe_table = array();
+			foreach($recipes as $recipe){
+				if(!isset($recipe_table[$recipe->recipes_id])){
+					$recipe_table[$recipe->recipes_id] = 1/$recipe->num_ingredients;
+				}else{
+					$recipe_table[$recipe->recipes_id] = $recipe_table[$recipe->recipes_id] + 1/$recipe->num_ingredients;
+				}
+			}
+			function cleanForSuggestion($var){
+				if($var < 0.4){
+					return false;
+				}else{
+					return true;
+				}
+			}
+			$invalid_recipe_table = array_filter($recipe_table, "cleanForSuggestion");
+			$invalid_recipes = \Recipes\Recipes::find(array_keys($invalid_recipe_table));
+			$ingredients_more_used = array();
+			foreach($invalid_recipes as $recipe){
+				foreach($recipe->ingredients()->get() as $ingredient){
+					if(!in_array($ingredient->id, $selected_ingredients)){
+						if(!isset($ingredients_more_used[$ingredient->id])){
+							$ingredients_more_used[$ingredient->id] = 1/$recipe->num_ingredients;
+						}else{
+							$ingredients_more_used[$ingredient->id] = $ingredients_more_used[$ingredient->id] + 1/$recipe->num_ingredients;
+						}
+					}
+				}
+			}
+			arsort($ingredients_more_used);
+			if(sizeof($ingredients_more_used) == 0){
+				return array('error' => true, 'message' => '¿Es lo único que tienes en tu cocina? Por favor indica algunos ingredientes más');
+			}
+			if(sizeof($ingredients_more_used)>6){
+				$ingredients_more_used = array_chunk($ingredients_more_used, 6, true);
+				$suggestions = \Ingredients\Ingredients::find(array_keys($ingredients_more_used[0]));
+			}else{
+				$suggestions = \Ingredients\Ingredients::find(array_keys($ingredients_more_used));
+			}
+		}
+		return array('error' => false, 'suggestions' => $suggestions);
+
+	}
 	public function findRecipes()
 	{
 		$recipes = DB::table('recipes')->join('ingredients_recipes','ingredients_recipes.recipes_id','=','recipes.id');
@@ -38,14 +93,14 @@ class RecipeController extends BaseController {
 				}
 			}
 			function clean($var){
-				if($var < 0.8){
+				if($var < 0.9){
 					return false;
 				}else{
 					return true;
 				}
 			}
 			function cleanForSuggestion($var){
-				if($var < 0.5){
+				if($var < 0.4){
 					return false;
 				}else{
 					return true;
@@ -102,14 +157,14 @@ class RecipeController extends BaseController {
 			}
 		}
 		function clean($var){
-			if($var < 0.8){
+			if($var < 0.9){
 				return false;
 			}else{
 				return true;
 			}
 		}
 		function cleanForSuggestion($var){
-			if($var < 0.5){
+			if($var < 0.4){
 				return false;
 			}else{
 				return true;

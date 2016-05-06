@@ -91,8 +91,14 @@
 @if(sizeof($sugerencias) > 0)
         <form method="post"
               action="{{URL::asset('findRecipesWithSuggestions')}}">
-                <div class = "sugerencias bg-warning">
-                        <div class="count-results"> Hemos encontrado recetas que también contienen estos ingredientes. ¿Cuentas con alguno de ellos?</div>
+                @if(sizeof($recipes) != 0)
+                        <div class = "sugerencias bg-warning">
+                                <div class="count-results"> Hemos encontrado recetas que también contienen estos ingredientes. ¿Cuentas con alguno de ellos?</div>
+                @else
+                        <div class = "sugerencias bg-danger">
+                                <div class="count-results"> No se han obtenido recetas con los ingredientes indicados.
+                                        Sin embargo hemos encontrados recetas que además llevan éstos. ¿Cuentas con alguno de ellos?</div>
+                @endif
                         @foreach($selected_ingredients as $ingredient)
                                 <input name = "{{$ingredient}}" hidden value = 'on'>
                         @endforeach

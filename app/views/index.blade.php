@@ -6,31 +6,29 @@
 
 <header class="business-header">
         <div class="jumbotron">
-                <form method="post"
-                      action="{{URL::asset('findRecipes')}}">
-                        <div class="title-header">
-                                Tus ingredientes, tus reglas
-                        </div>
-                        <div class="choose-ingredients">
-                                <div class="text-jumbotron">¿Con qué ingredientes cuentas?</div>
-                        </div>
-                        <div class="select2-select">
-                                <select class="js-example-basic-multiple" multiple="multiple" name="ingredients[]" id="tags">
-                                        @foreach($ingredients as $ingredient)
-                                                <option value="{{$ingredient->id}}">{{$ingredient->name}}</option>
-                                        @endforeach
+                <div class="title-header">
+                        Tus ingredientes, tus reglas
+                </div>
+                <div class="choose-ingredients">
+                        <div class="text-jumbotron">¿Con qué ingredientes cuentas?<div class="beta">(Indica almenos 4 ingredientes)</div></div>
+                </div>
+                <div class="select2-select">
+                        <select class="js-example-basic-multiple" multiple="multiple" name="ingredients[]" id="tags">
+                                @foreach($ingredients as $ingredient)
+                                        <option value="{{$ingredient->id}}">{{$ingredient->name}}</option>
+                                @endforeach
 
-                                </select>
-                                <script type="text/javascript">
-                                        $(".js-example-basic-multiple").select2();
-                                </script>
-                        </div>
+                        </select>
+                        <script type="text/javascript">
+                                $(".js-example-basic-multiple").select2();
+                        </script>
+                </div>
 
-                        <div>
-                                <button type="submit" onClick="_gaq.push(['_trackEvent', 'buscar_landing', '', '']);" class="btn btn-primary center-block btn-lg" >
-                                        Buscar recetas</button>
-                        </div>
-                </form>
+                <div>
+                        <button onClick="findSuggestions()" class="btn btn-primary center-block btn-lg" >
+                                Buscar recetas</button>
+
+                </div>
         </div>
 </header>
 <!-- Page Content -->
@@ -75,4 +73,78 @@
                 </div>
         </div>
 
+        <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+                <div class="modal-dialog">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title">Necesitamos saber más...</h4>
+                                </div>
+                                <form method="post"
+                                      action="{{URL::asset('findRecipesWithSuggestions')}}">
+                                <div class="modal-body">
+                                        <p>Los ingredientes que has introducido combinan bien con algunos de estos ¿Puedes decirnos si cuentas con alguno de ellos?</p>
+                                        <div id="suggestions">
+                                        </div>
+                                </div>
+                                <div class="modal-footer">
+                                        <button type="submit" onClick="_gaq.push(['_trackEvent', 'buscar_landing', '', '']);" class="btn btn-primary">Buscar recetas</button>
+                                </div>
+                                </form>
+                        </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+        <script type="text/javascript">
+                function findSuggestions(){
+                        var ingredients = $('#tags').val();
+                        $.ajax({
+                                method: 'POST',
+                                dataType:'json',
+                                url: window.location.pathname+'/findIngredients',
+                                data: {ingredients: ingredients},
+                                success: function(datas) {
+                                        if(datas['error']){
+                                                notificar(datas['message']);
+                                        }else{
+                                                $('#suggestions').empty();
+                                                var selected_ingredients = $('#tags').val();
+                                                var html = "";
+                                                for(var i = 0; i<selected_ingredients.length;i++){
+                                                        html = html + "<input name = "+selected_ingredients[i]+" hidden value = 'on'>";
+                                                }
+                                                var suggestions = datas['suggestions'];
+                                                for(var i = 1;i<=suggestions.length; i++){
+                                                        if(i%3==1){
+                                                                var html = html +  '<div class="results row">';
+                                                        }
+                                                        html = html + '<div class="col-md-4">' +
+                                                                '<h2 class="h4">'+suggestions[i-1]['name']+'</h2>'+
+                                                                        '<p>'+
+                                                                                '<input name="'+suggestions[i-1]['id']+'" type="checkbox" id = "'+
+                                                        suggestions[i-1]['id']+'"data-on-text="Yes" data-off-text="No" data-off-color="warning" data-on-color="success">'+
+                                                                        '</p>'+
+                                                                '</div>'
+                                                        if(i%3==0){
+                                                                html = html + '</div>';
+                                                        }else if(i == suggestions.length){
+                                                                html = html + '</div>';
+                                                        }
+                                                }
+                                                $('#suggestions').append(html);
+                                                for(var i = 1;i<=suggestions.length; i++){
+                                                        $("[name="+suggestions[i-1]['id']+"]").bootstrapSwitch();
+                                                }
+
+                                                $('#modal').modal('show');
+
+                                        }
+                                },
+                                error: function(datas){
+                                        notificarError("<?= Lang::get('notifications.refresh') ?>")
+                                }
+                        });
+                }
+        </script>
 @stop

@@ -45,6 +45,32 @@
     {{--end Select2--}}
     {{--<![endif]-->--}}
 
+    {{HTML::script('js/jquery-scrolltofixed.js')}}
+    {{HTML::script('js/noty/packaged/jquery.noty.packaged.js')}}
+    {{HTML::script('js/noty/layouts/top.js')}}
+    {{HTML::script('js/noty/layouts/topLeft.js')}}
+    {{HTML::script('js/noty/layouts/topRight.js')}}
+    <script type="text/javascript">
+        function notificar(texto) {
+            var n = noty({
+                text: texto,
+                theme: 'relax',
+                type: 'information',
+                layout: 'topCenter',
+                timeout: 6000
+            });
+        }
+        function notificarError(texto) {
+            var n = noty({
+                text: texto,
+                type: 'error',
+                theme: 'relax',
+                layout: 'topCenter',
+                timeout: 6000
+            });
+        }
+    </script>
+
 
 </head>
 
@@ -61,18 +87,7 @@
 
 <!-- /.container -->
 
-<!-- jQuery -->
-<script src="js/jquery.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
-
-<!-- Script to Activate the Carousel -->
-<script>
-    $('.carousel').carousel({
-        interval: 5000 //changes the speed
-    })
-</script>
 
 </body>
 
