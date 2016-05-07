@@ -24,6 +24,9 @@ class RecipeController extends BaseController {
 				return array('error' => true, 'message' => 'Tienes que indicar almenos 5 ingredientes');
 			}
 			foreach($selected_ingredients as $ingredient){
+				$i = \Ingredients\Ingredients::find($ingredient);
+				$i->searches = $i->searches+1;
+				$i->save();
 				$recipes = $recipes->orWhere('ingredients_recipes.ingredients_id','=',$ingredient);
 			}
 			$recipes = $recipes->get();

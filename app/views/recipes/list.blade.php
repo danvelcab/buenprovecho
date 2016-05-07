@@ -103,11 +103,11 @@
                 @endif
                 @endfor
                 <div>
-                        <button type="submit" class="btn btn-primary center-block btn-lg" onClick="ga('send', 'event', '_trackEvent', 'segundas_busquedas', '', '', '');">Buscar más recetas</button>
+                        <button type="submit" class="btn btn-primary center-block btn-lg" onClick="ga('send', 'event', '_trackEvent', 'segundas_busquedas', '', '0', '');">Buscar más recetas</button>
                 </div>
         </form>
         </div>
-        <button style="margin-top: 20px" onclick="window.location = '../public', ga('send', 'event', '_trackEvent', 'busqueda_diferente', '', '', '')" class="btn btn-primary center-block btn-lg" >Empezar nueva búsqueda</button>
+        <button style="margin-top: 20px" onclick="window.location = '../public', ga('send', 'event', '_trackEvent', 'busqueda_diferente', '', '0', '')" class="btn btn-primary center-block btn-lg" >Empezar nueva búsqueda</button>
         @endif
 
 

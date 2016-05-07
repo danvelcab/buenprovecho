@@ -17,12 +17,12 @@ Route::post('/findRecipes', 'RecipeController@findRecipes');
 Route::post('/findRecipesWithSuggestions', 'RecipeController@findRecipesWithSuggestions');
 Route::get('/findAllRecipes', 'RecipeController@findAllRecipes');
 //Route::get('/cookpad', 'ScrappingController@cookpad');
-Route::get('/reviseRecipes', 'ScrappingController@reviseRecipes');
+//Route::get('/reviseRecipes', 'ScrappingController@reviseRecipes');
 //Route::get('/cookpadRecipes', 'ScrappingController@cookpadRecipes');
 
-Route::get('/gBI','ScrappingCanalCocinaController@getBasicIngredients');
-Route::get('/gDI','ScrappingCanalCocinaController@getDerivedIngredients');
-Route::get('/gR','ScrappingCanalCocinaController@getRecipes');
+//Route::get('/gBI','ScrappingCanalCocinaController@getBasicIngredients');
+//Route::get('/gDI','ScrappingCanalCocinaController@getDerivedIngredients');
+//Route::get('/gR','ScrappingCanalCocinaController@getRecipes');
 
 //JQUERY
 Route::post('/findIngredients', 'RecipeController@findIngredients');

@@ -88,7 +88,7 @@
                                         </div>
                                 </div>
                                 <div class="modal-footer">
-                                        <button type="submit" onClick="ga('send', 'event', '_trackEvent', 'buscar_landing', '', '', '');" class="btn btn-primary">Buscar recetas</button>
+                                        <button type="submit" onClick="ga('send', 'event', '_trackEvent', 'buscar_landing', '', '0', '');" class="btn btn-primary">Buscar recetas</button>
                                 </div>
                                 </form>
                         </div><!-- /.modal-content -->
