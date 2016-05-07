@@ -10,7 +10,7 @@
                         Tus ingredientes, tus reglas
                 </div>
                 <div class="choose-ingredients">
-                        <div class="text-jumbotron">¿Con qué ingredientes cuentas?<div class="beta">(Indica almenos 4 ingredientes)</div></div>
+                        <div class="text-jumbotron">¿Con qué ingredientes cuentas?<div class="beta">(Indica almenos 5 ingredientes)</div></div>
                 </div>
                 <div class="select2-select">
                         <select class="js-example-basic-multiple" multiple="multiple" name="ingredients[]" id="tags">
@@ -88,7 +88,7 @@
                                         </div>
                                 </div>
                                 <div class="modal-footer">
-                                        <button type="submit" onClick="_gaq.push(['_trackEvent', 'buscar_landing', '', '']);" class="btn btn-primary">Buscar recetas</button>
+                                        <button type="submit" onClick="ga('send', 'event', '_trackEvent', 'buscar_landing', '', '', '');" class="btn btn-primary">Buscar recetas</button>
                                 </div>
                                 </form>
                         </div><!-- /.modal-content -->
@@ -115,6 +115,9 @@
                                                         html = html + "<input name = "+selected_ingredients[i]+" hidden value = 'on'>";
                                                 }
                                                 var suggestions = datas['suggestions'];
+                                                for(var i = 0;i<suggestions.length; i++){
+                                                        html = html + "<input name = "+suggestions[i]['id']+" hidden value = 'off'>";
+                                                }
                                                 for(var i = 1;i<=suggestions.length; i++){
                                                         if(i%3==1){
                                                                 var html = html +  '<div class="results row">';
@@ -134,7 +137,7 @@
                                                 }
                                                 $('#suggestions').append(html);
                                                 for(var i = 1;i<=suggestions.length; i++){
-                                                        $("[name="+suggestions[i-1]['id']+"]").bootstrapSwitch();
+                                                        $("#"+suggestions[i-1]['id']+"").bootstrapSwitch();
                                                 }
 
                                                 $('#modal').modal('show');

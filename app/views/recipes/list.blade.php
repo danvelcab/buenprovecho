@@ -4,32 +4,6 @@
 
 @section('content')
 @include('recipes.scriptList')
-<header class="find-others">
-        <div class="jumbotron">
-                <form method="post"
-                      action="{{URL::asset('findRecipes')}}">
-                        <div class="choose-ingredients">
-                                <div class="text-jumbotron2">¿No encontraste lo que esperabas? Prueba con otros ingredientes</div>
-                        </div>
-                        <div class="select2-select">
-                                <select class="js-example-basic-multiple" multiple="multiple" name="ingredients[]" id="tags">
-                                        @foreach($ingredients as $ingredient)
-                                                <option value="{{$ingredient->id}}">{{$ingredient->name}}</option>
-                                        @endforeach
-                                </select>
-                                <script type="text/javascript">
-                                        $(".js-example-basic-multiple").select2();
-                                </script>
-                        </div>
-                        <div>
-                                <button type="submit" class="btn btn-primary center-block btn-lg" onClick="_gaq.push(['_trackEvent', 'busqueda_diferente', '', '']);">Buscar recetas</button>
-                        </div>
-                </form>
-        </div>
-        @foreach($selected_ingredients as $ingredient)
-
-        @endforeach
-</header>
 <!-- Page Content -->
 <div class="container">
         <div class="row">
@@ -74,7 +48,7 @@
                                                                 </div>
                                                                 <div class="button-result">
                                                                         <a href="{{$recipes[$i-1]->url}}" target="_blank">
-                                                                                <button class="btn btn-primary btn-lg" onClick="_gaq.push(['_trackEvent', 'receta', 'cookpad', '1']);">Ver receta</button>
+                                                                                <button class="btn btn-primary btn-lg" onClick="ga('send', 'event', '_trackEvent', 'receta', 'cookpad', '1', '');">Ver receta</button>
                                                                         </a>
                                                                 </div>
                                                         </div>
@@ -102,6 +76,12 @@
                         @foreach($selected_ingredients as $ingredient)
                                 <input name = "{{$ingredient}}" hidden value = 'on'>
                         @endforeach
+                        @foreach($no_selected_ingredients as $ingredient)
+                                <input name = "{{$ingredient}}" hidden value = 'off'>
+                        @endforeach
+                        @foreach($sugerencias as $ingredient)
+                                <input name = "{{$ingredient->id}}" hidden value = 'off'>
+                        @endforeach
                         @for($i = 1;$i<=sizeof($sugerencias);$i++)
                                 @if($i%3==1)
                                         <div class="results row">
@@ -115,7 +95,7 @@
                                                                 <?php $id = $sugerencias[$i-1]->id?>
                                                         </p>
                                                 </div>
-                                                <script>$("[name='<?php echo $id?>']").bootstrapSwitch();</script>
+                                                <script>$("#"+"<?php echo $id?>").bootstrapSwitch();</script>
                                                 @if($i%3==0)
                                         </div>
                                 @elseif($i == sizeof($sugerencias))
@@ -123,10 +103,11 @@
                 @endif
                 @endfor
                 <div>
-                        <button type="submit" class="btn btn-primary center-block btn-lg" onClick="_gaq.push(['_trackEvent', 'segundas_busquedas', '', '']);">Buscar más recetas</button>
+                        <button type="submit" class="btn btn-primary center-block btn-lg" onClick="ga('send', 'event', '_trackEvent', 'segundas_busquedas', '', '', '');">Buscar más recetas</button>
                 </div>
         </form>
         </div>
+        <button style="margin-top: 20px" onclick="window.location = '../public', ga('send', 'event', '_trackEvent', 'busqueda_diferente', '', '', '')" class="btn btn-primary center-block btn-lg" >Empezar nueva búsqueda</button>
         @endif
 
 
