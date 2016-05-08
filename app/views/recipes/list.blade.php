@@ -48,7 +48,7 @@
                                                                 </div>
                                                                 <div class="button-result">
                                                                         <a href="{{$recipes[$i-1]->url}}" target="_blank">
-                                                                                <button class="btn btn-primary btn-lg" onClick="ga('send', 'event', '_trackEvent', 'receta', 'cookpad', '1', '');">Ver receta</button>
+                                                                                <button class="btn btn-primary btn-lg" onClick="ga('send', 'event', '_trackEvent', 'receta', '{{$recipes[$i-1]->web}}', '1', '');">Ver receta</button>
                                                                         </a>
                                                                 </div>
                                                         </div>

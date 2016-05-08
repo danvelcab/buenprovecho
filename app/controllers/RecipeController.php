@@ -177,6 +177,20 @@ class RecipeController extends BaseController {
 		'no_selected_ingredients' => $no_selected_ingrediens_id));
 	}
 
+	public function editRecipe($id_recipe){
+		$ingredients = \Ingredients\Ingredients::all();
+		$recipe = \Recipes\Recipes::find($id_recipe);
+		return View::make('recipes.edit', array('ingredients' => $ingredients, 'recipe' => $recipe));
+	}
+	public function updateRecipe(){
+		$recipe = \Recipes\Recipes::find(Input::all()['id']);
+		$recipe->ingredients()->detach();
+		foreach(Input::all()['ingredients'] as $ingredientId){
+			$recipe->ingredients()->attach($ingredientId);
+		}
+		return $this->editRecipe(Input::all()['id']);
+	}
+
 	public function findAllRecipes()
 	{
 		$selected_ingredients = array();
