@@ -18,6 +18,16 @@ Route::post('/findRecipesWithSuggestions', 'RecipeController@findRecipesWithSugg
 Route::get('/findAllRecipes', 'RecipeController@findAllRecipes');
 Route::get('/editRecipe/{id}', 'RecipeController@editRecipe');
 Route::post('/updateRecipe', 'RecipeController@updateRecipe');
+Route::get('/deleteIngredient/{id_ingredient}', 'RecipeController@deleteIngredient');
+//Route::get('/cookpad', 'ScrappingController@cookpad');
+//Route::get('/reviseRecipes', 'ScrappingController@reviseRecipes');
+//Route::get('/cookpadRecipes', 'ScrappingController@cookpadRecipes');
+
+//Route::get('/gBI','ScrappingCanalCocinaController@getBasicIngredients');
+//Route::get('/gDI','ScrappingCanalCocinaController@getDerivedIngredients');
+//Route::get('/gR','ScrappingCanalCocinaController@getRecipes');
+
+//Route::get('/gR','ScrappingRecetasFacilController@getRecipes');
 
 //JQUERY
 Route::post('/findIngredients', 'RecipeController@findIngredients');

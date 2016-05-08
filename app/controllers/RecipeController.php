@@ -188,7 +188,20 @@ class RecipeController extends BaseController {
 		foreach(Input::all()['ingredients'] as $ingredientId){
 			$recipe->ingredients()->attach($ingredientId);
 		}
+		$recipe->num_ingredients = sizeof(Input::all()['ingredients']);
+		$recipe->save();
 		return $this->editRecipe(Input::all()['id']);
+	}
+
+	public function deleteIngredient($id_ingredient){
+		$ingredient_recipe = DB::table('ingredients_recipes')->where('ingredients_id','=',$id_ingredient)->get();
+		foreach($ingredient_recipe as $i){
+			$recipe = \Recipes\Recipes::find($i->recipes_id);
+			$recipe->ingredients()->detach($i->ingredients_id);
+			$recipe->num_ingredients = $recipe->num_ingredients -1;
+			$recipe->save();
+		}
+
 	}
 
 	public function findAllRecipes()
