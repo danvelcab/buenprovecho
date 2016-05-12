@@ -4,7 +4,7 @@
 
 @section('content')
 
-<header class="business-header">
+        <header class="business-header">
         <div class="jumbotron">
                 <div class="title-header">
                         Tus ingredientes, tus reglas

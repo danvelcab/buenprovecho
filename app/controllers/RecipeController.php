@@ -174,7 +174,7 @@ class RecipeController extends BaseController {
 		$selected_ingredients_object = \Ingredients\Ingredients::find($selected_ingredients);
 		return View::make('recipes.list', array('ingredients' => $ingredients, 'selected_ingredients' => $selected_ingredients,
 			'selected_ingredients_object' => $selected_ingredients_object, 'recipes' => $recipes_final2, 'sugerencias' => $suggestions,
-		'no_selected_ingredients' => $no_selected_ingrediens_id));
+			'no_selected_ingredients' => $no_selected_ingrediens_id));
 	}
 
 	public function editRecipe($id_recipe){
@@ -184,13 +184,19 @@ class RecipeController extends BaseController {
 	}
 	public function updateRecipe(){
 		$recipe = \Recipes\Recipes::find(Input::all()['id']);
-		$recipe->ingredients()->detach();
-		foreach(Input::all()['ingredients'] as $ingredientId){
-			$recipe->ingredients()->attach($ingredientId);
+		if(isset(Input::all()['ingredients'])>0){
+			$recipe->ingredients()->detach();
+			foreach(Input::all()['ingredients'] as $ingredientId){
+				$recipe->ingredients()->attach($ingredientId);
+			}
+			$recipe->num_ingredients = sizeof(Input::all()['ingredients']);
+			$recipe->revised = 1;
+		}else{
+			$recipe->revised = 1;
 		}
-		$recipe->num_ingredients = sizeof(Input::all()['ingredients']);
 		$recipe->save();
-		return $this->editRecipe(Input::all()['id']);
+
+		return $this->findAllRecipes();
 	}
 
 	public function deleteIngredient($id_ingredient){
@@ -206,15 +212,35 @@ class RecipeController extends BaseController {
 
 	public function findAllRecipes()
 	{
-		$selected_ingredients = array();
-		$selected_ingredients_object = array();
-		$suggestions = array();
-		$recipes_final = \Recipes\Recipes::all();
+
+		$recipes_final = DB::table('recipes')->where('revised','=',0)->take(200)->get();
+
+		return View::make('recipes.listNoRevised', array('recipes' => $recipes_final));
+	}
+
+	public function createRecipe(){
 		$ingredients = \Ingredients\Ingredients::all();
-		$selectes_ingredients = \Ingredients\Ingredients::find(array(168,169,170));
-		return View::make('recipes.list', array('ingredients' => $ingredients, 'selected_ingredients' => $selected_ingredients,
-			'selected_ingredients_object' => $selected_ingredients_object, 'recipes' => $recipes_final, 'sugerencias' => $suggestions,
-			));
+		return View::make('recipes.create', array('ingredients' => $ingredients));
+	}
+	public function saveRecipe(){
+		$recipe = new \Recipes\Recipes();
+		$recipe->time = Input::all()['time'];
+		$recipe->url = Input::all()['url'];
+		$recipe->image_url = Input::all()['image-url'];
+		$recipe->image_url = Input::all()['name'];
+		$recipe->revised = 0;
+		$recipe->save();
+
+		$recipe->ingredients()->detach();
+		foreach(Input::all()['ingredients'] as $ingredientId){
+			$recipe->ingredients()->attach($ingredientId);
+		}
+		$recipe->num_ingredients = sizeof(Input::all()['ingredients']);
+		$recipe->save();
+		return $this->successRecipe();
+	}
+	public function successRecipe(){
+		return View::make('recipes.correcto');
 	}
 
 }

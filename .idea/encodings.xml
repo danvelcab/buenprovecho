@@ -6,6 +6,8 @@
     <file url="file://$PROJECT_DIR$/app/database/migrations/2017_02_25_133520_create_ingredients_configurations_table.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/database/migrations/2017_02_25_133520_create_ingredients_recipes_table.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/views/index.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/recipes/correcto.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/recipes/create.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/views/recipes/edit.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/views/recipes/list.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/views/template.blade.php" charset="UTF-8" />
