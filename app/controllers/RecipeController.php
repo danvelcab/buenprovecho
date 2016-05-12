@@ -227,7 +227,7 @@ class RecipeController extends BaseController {
 		$recipe->time = Input::all()['time'];
 		$recipe->url = Input::all()['url'];
 		$recipe->image_url = Input::all()['image-url'];
-		$recipe->image_url = Input::all()['name'];
+		$recipe->name = Input::all()['name'];
 		$recipe->revised = 0;
 		$recipe->save();
 
