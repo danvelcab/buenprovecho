@@ -7,13 +7,13 @@
         <header class="business-header">
         <div class="jumbotron">
                 <div class="title-header">
-                        Tus ingredientes, tus reglas
+                        ¿Con qué ingredientes cuentas?
                 </div>
-                <div class="choose-ingredients">
-                        <div class="text-jumbotron">¿Con qué ingredientes cuentas?<div class="beta">(Indica almenos 5 ingredientes)</div></div>
+                <div class="choose-ingredients" id = "choose-principal-ingredients">
+                        <div class="text-jumbotron">Indica almenos 3 ingredientes principales<div class="beta">(Todos los platos sugeridos contendrán por lo menos uno de ellos)</div></div>
                 </div>
-                <div class="select2-select">
-                        <select class="js-example-basic-multiple" multiple="multiple" name="ingredients[]" id="tags">
+                <div class="select2-select" id = "select-principal-ingredients">
+                        <select onChange ="checkThreeIngredients()" class="js-example-basic-multiple" multiple="multiple" name="ingredients[]" id="tags">
                                 @foreach($ingredients as $ingredient)
                                         <option value="{{$ingredient->id}}">{{$ingredient->name}}</option>
                                 @endforeach
@@ -24,10 +24,42 @@
                         </script>
                 </div>
 
-                <div>
-                        <button onClick="findSuggestions()" class="btn btn-primary center-block btn-lg" >
-                                Buscar recetas</button>
-
+                <div id="button">
+                        <button id="continue" disabled onClick="cont()" class="btn btn-primary center-block btn-lg" >
+                                Continuar</button>
+                </div>
+                <div class="count-results-index" id="count-results">
+                </div>
+                <div class="num-recipes" id="num-recipes">
+                </div>
+                <div class="choose-ingredients" id = "choose-secondary-ingredients">
+                        <div class="text-jumbotron">Indica almenos 2 ingredientes adicionales</div>
+                </div>
+                <div class="select2-select" id = "select-secondary-ingredients">
+                        <select onChange ="checkTwoIngredients()" class="js-example-basic-multiple" multiple="multiple" name="ingredients[]" id="tags2">
+                        </select>
+                        <script type="text/javascript">
+                                $(".js-example-basic-multiple").select2();
+                        </script>
+                </div>
+                <div class="center-block">
+                        <div class="row">
+                                <div class="col-md-6 col-lg-6" style="text-align: right">
+                                <button  id="buttonFindSuggestions" disabled onClick="findSuggestions()" class="btn btn-primary btn-lg " >
+                                        Buscar recetas</button>
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+                                <a href=""><button  id="empezar" class="btn btn-primary btn-lg" >
+                                        Empezar de nuevo</button></a>
+                                </div>
+                                <script type="text/javascript">
+                                        $('#count-results').hide();
+                                        $('#choose-secondary-ingredients').hide();
+                                        $('#select-secondary-ingredients').hide();
+                                        $('#buttonFindSuggestions').hide();
+                                        $('#empezar').hide();
+                                </script>
+                        </div>
                 </div>
         </div>
 </header>
@@ -97,22 +129,83 @@
 
 
         <script type="text/javascript">
-                function findSuggestions(){
+                function checkThreeIngredients(){
+                        var tags = $('#tags');
+                        if(tags.val() != null && tags.val().length >= 3){
+                                $('#continue').prop('disabled',false);
+                        }
+                }
+                function checkTwoIngredients(){
+                        var tags = $('#tags2');
+                        if(tags.val() != null && tags.val().length >= 2){
+                                $('#buttonFindSuggestions').prop('disabled',false);
+                        }
+                }
+                function cont(){
                         var ingredients = $('#tags').val();
                         $.ajax({
                                 method: 'POST',
                                 dataType:'json',
-                                url: window.location.pathname+'/findIngredients',
+                                url: window.location.pathname+'/findSecondary',
                                 data: {ingredients: ingredients},
+                                success: function(datas) {
+                                        if(datas['error']){
+                                                notificar(datas['message']);
+                                        }else{
+                                                $('#count-results').append("Tus ingredientes principales:");
+                                                $.each(datas['selected_ingredients'], function (i, data) {
+                                                        $('#count-results').append("" +
+                                                                "<span class='label-success-trans label'>" +
+                                                                data['name'] + "</span>");
+                                                });
+                                                $.each(datas['secondary'], function (i, data) {
+                                                        $('#tags2').append($('<option>', {
+                                                                value: data['id'],
+                                                                text : data['name']
+                                                        }));
+                                                });
+                                                $('#choose-principal-ingredients').hide();
+                                                $('#select-principal-ingredients').hide();
+                                                $('#tags').hide();
+                                                $('#button').empty();
+                                                $('#count-results').show();
+                                                $('#choose-secondary-ingredients').show();
+                                                $('#select-secondary-ingredients').show();
+                                                $('#buttonFindSuggestions').show();
+                                                $('#empezar').show();
+                                                $('#num-recipes')
+                                                        .append("( "+datas['num_recipes']+" recetas con estos ingredientes )");
+
+
+                                        }
+                                },
+                                error: function(datas){
+                                        notificarError("<?= Lang::get('notifications.refresh') ?>")
+                                }
+                        });
+                }
+
+                function findSuggestions(){
+                        var ingredients = $('#tags').val();
+                        var secondary_ingredients = $('#tags2').val();
+                        $.ajax({
+                                method: 'POST',
+                                dataType:'json',
+                                url: window.location.pathname+'/findIngredients',
+                                data: {ingredients: ingredients, secondary_ingredients: secondary_ingredients},
                                 success: function(datas) {
                                         if(datas['error']){
                                                 notificar(datas['message']);
                                         }else{
                                                 $('#suggestions').empty();
                                                 var selected_ingredients = $('#tags').val();
+                                                var optional_ingredients = $('#tags2').val();
                                                 var html = "";
                                                 for(var i = 0; i<selected_ingredients.length;i++){
-                                                        html = html + "<input name = "+selected_ingredients[i]+" hidden value = 'on'>";
+                                                        html = html + "<input name = primary-"+selected_ingredients[i]+" hidden value = 'on'>";
+                                                }
+                                                for(var i = 0; i<optional_ingredients.length;i++){
+                                                        html = html + "<input name = "+optional_ingredients[i]+" hidden value = 'on'>";
                                                 }
                                                 var suggestions = datas['suggestions'];
                                                 for(var i = 0;i<suggestions.length; i++){

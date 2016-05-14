@@ -12,9 +12,18 @@
                         @foreach($selected_ingredients_object as $ingredient)
                                 <span class="label label-success">{{$ingredient->name}}</span>
                         @endforeach
+                        @foreach($optional_selected_ingredients_object as $ingredient)
+                                <span class="label label-warning">{{$ingredient->name}}</span>
+                        @endforeach
                 </div>
                 <div class="count-results col-md-12">
                         {{sizeof($recipes)}} resultados encontrados
+                        <button style="margin-top: 20px" onclick="window.location = '../public', ga('send', 'event', '_trackEvent', 'busqueda_diferente', '', '0', '')" class="btn btn-primary center-block btn-lg" >Empezar nueva búsqueda</button>
+                </div>
+                <div class="count-results col-md-12">
+                        <span style="margin-right: 5px" class="label label-success"> Principal </span>
+                        <span class="label label-warning"> Secundario </span>
+                        <span style="margin-left: 5px" class="label label-danger"> No coincidencia </span>
                 </div>
                 <hr>
         </div>
@@ -41,7 +50,11 @@
                                                                                 @if(in_array($ingredient->id, $selected_ingredients))
                                                                                         <span class="label label-success">{{$ingredient->name}}</span>
                                                                                 @else
-                                                                                        <span class="label label-warning">{{$ingredient->name}}</span>
+                                                                                        @if(in_array($ingredient->id, $optional_selected_ingredients))
+                                                                                                <span class="label label-warning">{{$ingredient->name}}</span>
+                                                                                        @else
+                                                                                                <span class="label label-danger">{{$ingredient->name}}</span>
+                                                                                        @endif
                                                                                 @endif
 
                                                                         @endforeach
@@ -74,6 +87,9 @@
                                                         Sin embargo hemos encontrados recetas que además llevan éstos. ¿Cuentas con alguno de ellos?</div>
                                                 @endif
                                                 @foreach($selected_ingredients as $ingredient)
+                                                        <input name = "primary-{{$ingredient}}" hidden value = 'on'>
+                                                @endforeach
+                                                @foreach($optional_selected_ingredients as $ingredient)
                                                         <input name = "{{$ingredient}}" hidden value = 'on'>
                                                 @endforeach
                                                 @foreach($no_selected_ingredients as $ingredient)
@@ -107,7 +123,6 @@
                                 </div>
         </form>
         </div>
-        <button style="margin-top: 20px" onclick="window.location = '../public', ga('send', 'event', '_trackEvent', 'busqueda_diferente', '', '0', '')" class="btn btn-primary center-block btn-lg" >Empezar nueva búsqueda</button>
 @endif
 
 

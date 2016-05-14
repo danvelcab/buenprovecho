@@ -21,6 +21,7 @@ Route::post('/updateRecipe', 'RecipeController@updateRecipe');
 Route::get('/createRecipe', 'RecipeController@createRecipe');
 Route::post('/saveRecipe', 'RecipeController@saveRecipe');
 Route::get('/deleteIngredient/{id_ingredient}', 'RecipeController@deleteIngredient');
+Route::post('/findSecondary', 'RecipeController@findSecondaryIngredients');
 
 //JQUERY
 Route::post('/findIngredients', 'RecipeController@findIngredients');
