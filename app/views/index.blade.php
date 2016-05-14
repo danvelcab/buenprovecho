@@ -46,12 +46,12 @@
                 </div>
                 <div class="center-block">
                         <div class="row">
-                                <div class="col-md-12 col-lg-6" style="text-align: right">
+                                <div class="col-md-12 col-lg-12" style="text-align: center; margin-bottom: 10px">
                                 <button  id="buttonFindSuggestions" disabled onClick="findSuggestions()" class="btn btn-primary btn-lg " >
                                         Buscar recetas</button>
                                 </div>
-                                <div class="col-md-12 col-lg-6">
-                                <a href=""><button  id="empezar" class="btn btn-primary btn-lg" >
+                                <div class="col-md-12 col-lg-12" style="text-align: center">
+                                <a href=""><button  id="empezar" class="btn btn-primary btn-md" >
                                         Empezar de nuevo</button></a>
                                 </div>
                                 <script type="text/javascript">
@@ -154,12 +154,6 @@
                                         if(datas['error']){
                                                 notificar(datas['message']);
                                         }else{
-                                                $('#count-results').append("Tus ingredientes principales:");
-                                                $.each(datas['selected_ingredients'], function (i, data) {
-                                                        $('#count-results').append("" +
-                                                                "<span class='label-success-trans label'>" +
-                                                                data['name'] + "</span>");
-                                                });
                                                 $.each(datas['secondary'], function (i, data) {
                                                         $('#tags2').append($('<option>', {
                                                                 value: data['id'],
@@ -175,9 +169,8 @@
                                                 $('#select-secondary-ingredients').show();
                                                 $('#buttonFindSuggestions').show();
                                                 $('#empezar').show();
-                                                $('#num-recipes')
-                                                        .append("( "+datas['num_recipes']+" recetas con estos ingredientes )");
-
+                                                notificar("Se han encontrado "+datas['num_recipes']+" recetas con estos ingredientes principales." +
+                                                        " Índicanos algunos ingredientes adicionales para continuar");
 
                                         }
                                 },
