@@ -28,7 +28,9 @@
                         <button id="continue" disabled onClick="cont()" class="btn btn-primary center-block btn-lg" >
                                 Continuar</button>
                 </div>
-                <div class="count-results-index" id="count-results">
+                <div class="row">
+                        <div class="col-md-12 count-results-index" id="count-results">
+                        </div>
                 </div>
                 <div class="num-recipes" id="num-recipes">
                 </div>
@@ -44,11 +46,11 @@
                 </div>
                 <div class="center-block">
                         <div class="row">
-                                <div class="col-md-6 col-lg-6" style="text-align: right">
+                                <div class="col-md-12 col-lg-6" style="text-align: right">
                                 <button  id="buttonFindSuggestions" disabled onClick="findSuggestions()" class="btn btn-primary btn-lg " >
                                         Buscar recetas</button>
                                 </div>
-                                <div class="col-md-6 col-lg-6">
+                                <div class="col-md-12 col-lg-6">
                                 <a href=""><button  id="empezar" class="btn btn-primary btn-lg" >
                                         Empezar de nuevo</button></a>
                                 </div>
