@@ -316,4 +316,47 @@ class RecipeController extends BaseController {
 		return View::make('recipes.correcto');
 	}
 
+	public function countRecipes(){
+		$recipes = DB::table('recipes')->join('ingredients_recipes','ingredients_recipes.recipes_id','=','recipes.id');
+		$selected_ingredients = Input::all()['ingredients'];
+		$secondary_ingredients = Input::all()['secondary_ingredients'];
+		if($selected_ingredients != null){
+			foreach($selected_ingredients as $ingredient){
+				$i = \Ingredients\Ingredients::find($ingredient);
+				$i->searches = $i->searches+1;
+				$i->save();
+				$recipes = $recipes->orWhere('ingredients_recipes.ingredients_id','=',$ingredient);
+			}
+			$recipes = $recipes->get();
+			$recipe_table = array();
+			foreach($recipes as $recipe){
+				if(!isset($recipe_table[$recipe->recipes_id])){
+					$recipe_table[$recipe->recipes_id] = 1/$recipe->num_ingredients;
+				}else{
+					$recipe_table[$recipe->recipes_id] = $recipe_table[$recipe->recipes_id] + 1/$recipe->num_ingredients;
+				}
+			}
+			$recipes = DB::table('recipes')->join('ingredients_recipes','ingredients_recipes.recipes_id','=','recipes.id');
+			foreach($secondary_ingredients as $ingredient){
+				$recipes = $recipes->orWhere('ingredients_recipes.ingredients_id','=',$ingredient);
+			}
+			$recipes = $recipes->get();
+			foreach($recipes as $recipe){
+				if(isset($recipe_table[$recipe->recipes_id])){
+					$recipe_table[$recipe->recipes_id] = $recipe_table[$recipe->recipes_id] + 1/$recipe->num_ingredients;
+				}
+			}
+			function cleanForSuggestion($var){
+				if($var < 0.75){
+					return false;
+				}else{
+					return true;
+				}
+			}
+			$invalid_recipe_table = array_filter($recipe_table, "cleanForSuggestion");
+			$invalid_recipes = \Recipes\Recipes::find(array_keys($invalid_recipe_table));
+		}
+		return array('error' => false, 'count' => sizeof($invalid_recipes));
+	}
+
 }

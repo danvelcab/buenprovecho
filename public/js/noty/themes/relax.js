@@ -11,7 +11,7 @@ $.noty.themes.relax = {
             opacity        : 0.6,
             display        : 'none',
             left           : 0,
-            top            : 0
+            top            : 0,
         }
     },
     style   : function() {
@@ -23,7 +23,7 @@ $.noty.themes.relax = {
         });
 
         this.$message.css({
-            fontSize  : '14px',
+            fontSize  : '13px',
             lineHeight: '16px',
             textAlign : 'center',
             padding   : '10px',
@@ -133,7 +133,7 @@ $.noty.themes.relax = {
                 break;
             case 'success':
                 this.$bar.css({backgroundColor: '#BCF5BC', borderColor: '#7cdd77', color: 'darkgreen'});
-                this.$buttons.css({borderTop: '1px solid #50C24E'});
+                this.$buttons.css({borderTop: '1px solid #13C24E'});
                 break;
             default:
                 this.$bar.css({backgroundColor: '#FFF', borderColor: '#CCC', color: '#444'});

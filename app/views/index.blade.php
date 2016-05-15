@@ -44,6 +44,9 @@
                                 $(".js-example-basic-multiple").select2();
                         </script>
                 </div>
+                <div class="text-jumbotron" style="margin-bottom: 15px" id="count-recipes">
+
+                </div>
                 <div class="center-block">
                         <div class="row">
                                 <div class="col-md-12 col-lg-12" style="text-align: center; margin-bottom: 10px">
@@ -72,7 +75,7 @@
         <div class="row">
                 <div class="col-lg-12">
                         <h1 class="page-header">
-                                ¿No sabes qué cocinar? Te lo ponemos fácil ...
+                                ¿No sabes qué cocinar? Te lo ponemos fácil
                         </h1>
                 </div>
                 <div class="col-md-4">
@@ -112,7 +115,7 @@
                         <div class="modal-content">
                                 <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title">Necesitamos saber más...</h4>
+                                        <h4 class="modal-title">Necesitamos saber más</h4>
                                 </div>
                                 <form method="post"
                                       action="{{URL::asset('findRecipesWithSuggestions')}}">
@@ -122,8 +125,31 @@
                                         </div>
                                 </div>
                                 <div class="modal-footer">
+                                        <div style="text-align: center" class="alert alert-danger">Al indicar que no tienes un ingredientes excluyes todas aquellas recetas que lo contengan</div>
                                         <button type="submit" onClick="ga('send', 'event', '_trackEvent', 'buscar_landing', '', '0', '');" class="btn btn-primary">Buscar recetas</button>
                                 </div>
+                                </form>
+                        </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" tabindex="-1" role="dialog" id="modal2">
+                <div class="modal-dialog">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title">Antes de continuar</h4>
+                                </div>
+                                <form method="post"
+                                      action="{{URL::asset('findRecipesWithSuggestions')}}">
+                                        <div class="modal-body">
+                                                <p></p>
+                                                <div id="suggestions">
+                                                </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                                <button type="submit" onClick="ga('send', 'event', '_trackEvent', 'buscar_landing', '', '0', '');" class="btn btn-primary">Buscar recetas</button>
+                                        </div>
                                 </form>
                         </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
@@ -141,7 +167,25 @@
                         var tags = $('#tags2');
                         if(tags.val() != null && tags.val().length >= 2){
                                 $('#buttonFindSuggestions').prop('disabled',false);
+                                $('.select2-selection').css('border-width',1);
+                                $('.select2-selection').css('border-color','rgb(170,170,170)');
                         }
+                        var ingredients = $('#tags').val();
+                        var secondary_ingredients = $('#tags2').val();
+                        $.ajax({
+                                method: 'POST',
+                                dataType:'json',
+                                url: window.location.pathname+'/countRecipes',
+                                data: {ingredients: ingredients, secondary_ingredients: secondary_ingredients},
+                                success: function(datas) {
+                                        $('#count-recipes').empty();
+                                        $('#count-recipes').append(datas['count'] + " recetas");
+                                },
+                                error: function(datas){
+                                        notificarError("<?= Lang::get('notifications.refresh') ?>")
+                                }
+                        });
+
                 }
                 function cont(){
                         var ingredients = $('#tags').val();
@@ -169,8 +213,10 @@
                                                 $('#select-secondary-ingredients').show();
                                                 $('#buttonFindSuggestions').show();
                                                 $('#empezar').show();
+                                                $('.select2-selection').css('border-width',1);
+                                                $('.select2-selection').css('border-color','rgb(255,035,001)');
                                                 notificar("Se han encontrado "+datas['num_recipes']+" recetas con estos ingredientes principales." +
-                                                        " Índicanos algunos ingredientes adicionales para continuar");
+                                                        " Índicanos algunos ingredientes adicionales para saber si puedes cocinarlas");
 
                                         }
                                 },

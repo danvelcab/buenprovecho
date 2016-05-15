@@ -165,8 +165,8 @@ $.noty.themes.defaultTheme = {
                 this.$buttons.css({borderTop: '1px solid #0B90C4'});
                 break;
             case 'success':
-                this.$bar.css({backgroundColor: 'lightgreen', borderColor: '#50C24E', color: 'darkgreen'});
-                this.$buttons.css({borderTop: '1px solid #50C24E'});
+                this.$bar.css({backgroundColor: 'lightgreen', borderColor: '#13C24E', color: 'darkgreen'});
+                this.$buttons.css({borderTop: '1px solid #13C24E'});
                 break;
             default:
                 this.$bar.css({backgroundColor: '#FFF', borderColor: '#CCC', color: '#444'});
