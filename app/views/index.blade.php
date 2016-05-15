@@ -32,8 +32,6 @@
                         <div class="col-md-12 count-results-index" id="count-results">
                         </div>
                 </div>
-                <div class="num-recipes" id="num-recipes">
-                </div>
                 <div class="choose-ingredients" id = "choose-secondary-ingredients">
                         <div class="text-jumbotron">Indica almenos 2 ingredientes adicionales</div>
                 </div>
@@ -44,7 +42,7 @@
                                 $(".js-example-basic-multiple").select2();
                         </script>
                 </div>
-                <div class="text-jumbotron" style="margin-bottom: 15px" id="count-recipes">
+                <div style="text-align: center; margin-bottom: 20px" id="count-recipes">
 
                 </div>
                 <div class="center-block">
@@ -133,28 +131,6 @@
                 </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
-        <div class="modal fade" tabindex="-1" role="dialog" id="modal2">
-                <div class="modal-dialog">
-                        <div class="modal-content">
-                                <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title">Antes de continuar</h4>
-                                </div>
-                                <form method="post"
-                                      action="{{URL::asset('findRecipesWithSuggestions')}}">
-                                        <div class="modal-body">
-                                                <p></p>
-                                                <div id="suggestions">
-                                                </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                                <button type="submit" onClick="ga('send', 'event', '_trackEvent', 'buscar_landing', '', '0', '');" class="btn btn-primary">Buscar recetas</button>
-                                        </div>
-                                </form>
-                        </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-
 
         <script type="text/javascript">
                 function checkThreeIngredients(){
@@ -179,7 +155,17 @@
                                 data: {ingredients: ingredients, secondary_ingredients: secondary_ingredients},
                                 success: function(datas) {
                                         $('#count-recipes').empty();
-                                        $('#count-recipes').append(datas['count'] + " recetas");
+                                        var count = datas['count'];
+                                        if(count == 0){
+                                                $('#count-recipes').append('<div style="text-align: center; display: inline" class="alert alert-danger">' +
+                                                        count + ' recetas. Sugerencias: '+ datas['s1'] + ', '+
+                                                        datas['s2'] + ', '+ datas['s3'] + ' </div>');
+                                        }else{
+                                                $('#count-recipes').append('<div style="text-align: center; display: inline" class="alert alert-success">' +
+                                                        count + ' recetas. Sugerencias: '+ datas['s1'] + ', '+
+                                                        datas['s2'] + ', '+ datas['s3'] + ' </div>');
+                                        }
+
                                 },
                                 error: function(datas){
                                         notificarError("<?= Lang::get('notifications.refresh') ?>")

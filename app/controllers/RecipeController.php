@@ -346,6 +346,32 @@ class RecipeController extends BaseController {
 					$recipe_table[$recipe->recipes_id] = $recipe_table[$recipe->recipes_id] + 1/$recipe->num_ingredients;
 				}
 			}
+			arsort($recipe_table);
+			$best_recipe = null;
+			$s1 = null;
+			$s2 = null;
+			$s3 = null;
+			foreach($recipe_table as $key => $recipe){
+				if($recipe < 0.75){
+					$best_recipe = $key;
+					$best_recipe = \Recipes\Recipes::find($best_recipe);
+					foreach($best_recipe->ingredients()->get() as $ingredient){
+						if(!in_array($ingredient->id, $selected_ingredients) and !in_array($ingredient->id, $secondary_ingredients)){
+							if($s1 == null){
+								$s1 = $ingredient;
+								continue;
+							}else if($s2 == null){
+								$s2 = $ingredient;
+								continue;
+							}else{
+								$s3 = $ingredient;
+								break;
+							}
+						}
+					}
+				}
+			}
+
 			function cleanForSuggestion($var){
 				if($var < 0.75){
 					return false;
@@ -356,7 +382,20 @@ class RecipeController extends BaseController {
 			$invalid_recipe_table = array_filter($recipe_table, "cleanForSuggestion");
 			$invalid_recipes = \Recipes\Recipes::find(array_keys($invalid_recipe_table));
 		}
-		return array('error' => false, 'count' => sizeof($invalid_recipes));
+		$nameS1 = "";
+		if($s1 != null){
+			$nameS1 = $s1->name;
+		}
+		$nameS2 = "";
+		if($s2 != null){
+			$nameS2 = $s2->name;
+		}
+		$nameS3 = "";
+		if($s3 != null){
+			$nameS3 = $s3->name;
+		}
+		return array('error' => false, 'count' => sizeof($invalid_recipes), 's1' => $nameS1, 's2' =>  $nameS2,
+			's3' =>  $nameS3);
 	}
 
 }
