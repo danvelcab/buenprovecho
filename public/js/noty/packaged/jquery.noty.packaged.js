@@ -583,7 +583,7 @@ $.noty.layouts.bottomCenter = {
                 bottom       : 20,
                 left         : 0,
                 position     : 'fixed',
-                width        : '600px',
+                width        : '90%',
                 height       : 'auto',
                 margin       : 0,
                 padding      : 0,
@@ -603,7 +603,7 @@ $.noty.layouts.bottomCenter = {
     },
     css      : {
         display: 'none',
-        width  : '600px'
+        width  : '90%'
     },
     addClass : ''
 };
@@ -622,7 +622,7 @@ $.noty.layouts.bottomLeft = {
                 bottom       : 20,
                 left         : 20,
                 position     : 'fixed',
-                width        : '600px',
+                width        : '90%',
                 height       : 'auto',
                 margin       : 0,
                 padding      : 0,
@@ -644,7 +644,7 @@ $.noty.layouts.bottomLeft = {
     },
     css      : {
         display: 'none',
-        width  : '600px'
+        width  : '90%'
     },
     addClass : ''
 };
@@ -661,7 +661,7 @@ $.noty.layouts.bottomRight = {
                 bottom       : 20,
                 right        : 20,
                 position     : 'fixed',
-                width        : '600px',
+                width        : '90%',
                 height       : 'auto',
                 margin       : 0,
                 padding      : 0,
@@ -683,7 +683,7 @@ $.noty.layouts.bottomRight = {
     },
     css      : {
         display: 'none',
-        width  : '600px'
+        width  : '90%'
     },
     addClass : ''
 };
@@ -698,7 +698,7 @@ $.noty.layouts.center = {
         style   : function() {
             $(this).css({
                 position     : 'fixed',
-                width        : '600px',
+                width        : '90%',
                 height       : 'auto',
                 margin       : 0,
                 padding      : 0,
@@ -736,7 +736,7 @@ $.noty.layouts.center = {
     },
     css      : {
         display: 'none',
-        width  : '600px'
+        width  : '90%'
     },
     addClass : ''
 };
@@ -752,7 +752,7 @@ $.noty.layouts.centerLeft = {
             $(this).css({
                 left         : 20,
                 position     : 'fixed',
-                width        : '600px',
+                width        : '90%',
                 height       : 'auto',
                 margin       : 0,
                 padding      : 0,
@@ -794,7 +794,7 @@ $.noty.layouts.centerLeft = {
     },
     css      : {
         display: 'none',
-        width  : '600px'
+        width  : '90%'
     },
     addClass : ''
 };
@@ -811,7 +811,7 @@ $.noty.layouts.centerRight = {
             $(this).css({
                 right        : 20,
                 position     : 'fixed',
-                width        : '600px',
+                width        : '90%',
                 height       : 'auto',
                 margin       : 0,
                 padding      : 0,
@@ -853,7 +853,7 @@ $.noty.layouts.centerRight = {
     },
     css      : {
         display: 'none',
-        width  : '600px'
+        width  : '90%'
     },
     addClass : ''
 };
@@ -927,7 +927,7 @@ $.noty.layouts.topCenter = {
                 top          : 20,
                 left         : 0,
                 position     : 'fixed',
-                width        : '600px',
+                width        : '90%',
                 height       : 'auto',
                 margin       : 0,
                 padding      : 0,
@@ -947,7 +947,7 @@ $.noty.layouts.topCenter = {
     },
     css      : {
         display: 'none',
-        width  : '600px'
+        width  : '90%'
     },
     addClass : ''
 };
@@ -965,7 +965,7 @@ $.noty.layouts.topLeft = {
                 top          : 20,
                 left         : 20,
                 position     : 'fixed',
-                width        : '600px',
+                width        : '90%',
                 height       : 'auto',
                 margin       : 0,
                 padding      : 0,
@@ -987,7 +987,7 @@ $.noty.layouts.topLeft = {
     },
     css      : {
         display: 'none',
-        width  : '600px'
+        width  : '90%'
     },
     addClass : ''
 };
@@ -1004,7 +1004,7 @@ $.noty.layouts.topRight = {
                 top          : 20,
                 right        : 20,
                 position     : 'fixed',
-                width        : '600px',
+                width        : '90%',
                 height       : 'auto',
                 margin       : 0,
                 padding      : 0,
@@ -1026,7 +1026,7 @@ $.noty.layouts.topRight = {
     },
     css      : {
         display: 'none',
-        width  : '600px'
+        width  : '90%'
     },
     addClass : ''
 };
@@ -1074,8 +1074,8 @@ $.noty.themes.bootstrapTheme = {
         }
 
         this.$message.css({
-            fontSize: '20px',
-            lineHeight: '30px',
+            fontSize: '15px',
+            lineHeight: '20px',
             textAlign: 'center',
             padding: '8px 10px 9px',
             width: 'auto',
@@ -1145,8 +1145,8 @@ $.noty.themes.defaultTheme = {
         });
 
         this.$message.css({
-            fontSize  : '20px',
-            lineHeight: '30px',
+            fontSize  : '15px',
+            lineHeight: '20px',
             textAlign : 'center',
             padding   : '8px 10px 9px',
             width     : 'auto',
@@ -1205,7 +1205,7 @@ $.noty.themes.defaultTheme = {
                     border      : '1px solid #eee',
                     boxShadow   : "0 2px 4px rgba(0, 0, 0, 0.1)"
                 });
-                this.$message.css({fontSize: '20px', textAlign: 'center'});
+                this.$message.css({fontSize: '15px', textAlign: 'center'});
                 break;
             case 'topLeft':
             case 'topRight':
@@ -1218,7 +1218,7 @@ $.noty.themes.defaultTheme = {
                     border      : '1px solid #eee',
                     boxShadow   : "0 2px 4px rgba(0, 0, 0, 0.1)"
                 });
-                this.$message.css({fontSize: '20px', textAlign: 'left'});
+                this.$message.css({fontSize: '15px', textAlign: 'left'});
                 break;
             case 'bottom':
                 this.$bar.css({
@@ -1299,8 +1299,8 @@ $.noty.themes.relax = {
         });
 
         this.$message.css({
-            fontSize  : '20px',
-            lineHeight: '30px',
+            fontSize  : '15px',
+            lineHeight: '20px',
             textAlign : 'center',
             padding   : '10px',
             width     : 'auto',
@@ -1358,7 +1358,7 @@ $.noty.themes.relax = {
                     border   : '1px solid #eee',
                     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
                 });
-                this.$message.css({fontSize: '20px', textAlign: 'center'});
+                this.$message.css({fontSize: '15px', textAlign: 'center'});
                 break;
             case 'topLeft':
             case 'topRight':
@@ -1370,7 +1370,7 @@ $.noty.themes.relax = {
                     border   : '1px solid #eee',
                     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
                 });
-                this.$message.css({fontSize: '20px', textAlign: 'left'});
+                this.$message.css({fontSize: '15px', textAlign: 'left'});
                 break;
             case 'bottom':
                 this.$bar.css({

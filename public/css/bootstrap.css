@@ -6893,3 +6893,12 @@ button.close {
 .beta{
   font-size: 12px;
 }
+.count-recipes{
+  text-align: center;
+  font-size: 10px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+  padding-left: 2px;
+  padding-right: 2px;
+  margin-bottom: 20px;
+}

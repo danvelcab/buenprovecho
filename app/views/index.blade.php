@@ -42,7 +42,7 @@
                                 $(".js-example-basic-multiple").select2();
                         </script>
                 </div>
-                <div style="text-align: center; margin-bottom: 20px" id="count-recipes">
+                <div id="count-recipes" class="count-recipes">
 
                 </div>
                 <div class="center-block">
@@ -157,11 +157,11 @@
                                         $('#count-recipes').empty();
                                         var count = datas['count'];
                                         if(count == 0){
-                                                $('#count-recipes').append('<div style="text-align: center; display: inline" class="alert alert-danger">' +
+                                                $('#count-recipes').append('<div style="text-align: center; display: inline" class="alert alert-danger count-recipes">' +
                                                         count + ' recetas. Sugerencias: '+ datas['s1'] + ', '+
                                                         datas['s2'] + ', '+ datas['s3'] + ' </div>');
                                         }else{
-                                                $('#count-recipes').append('<div style="text-align: center; display: inline" class="alert alert-success">' +
+                                                $('#count-recipes').append('<div style="text-align: center; display: inline" class="alert alert-success count-recipes">' +
                                                         count + ' recetas. Sugerencias: '+ datas['s1'] + ', '+
                                                         datas['s2'] + ', '+ datas['s3'] + ' </div>');
                                         }
@@ -174,6 +174,7 @@
 
                 }
                 function cont(){
+                        $('#continue').prop('disabled',true);
                         var ingredients = $('#tags').val();
                         $.ajax({
                                 method: 'POST',

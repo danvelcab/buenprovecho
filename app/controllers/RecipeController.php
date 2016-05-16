@@ -352,7 +352,7 @@ class RecipeController extends BaseController {
 			$s2 = null;
 			$s3 = null;
 			foreach($recipe_table as $key => $recipe){
-				if($recipe < 0.75){
+				if($recipe < 0.85){
 					$best_recipe = $key;
 					$best_recipe = \Recipes\Recipes::find($best_recipe);
 					foreach($best_recipe->ingredients()->get() as $ingredient){
