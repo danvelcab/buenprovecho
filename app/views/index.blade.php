@@ -148,7 +148,7 @@
                         }
                         var ingredients = $('#tags').val();
                         var secondary_ingredients = $('#tags2').val();
-                        if(tags.val()>0){
+                        if(tags.val().length > 0){
                                 $.ajax({
                                         method: 'POST',
                                         dataType:'json',
