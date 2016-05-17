@@ -148,30 +148,32 @@
                         }
                         var ingredients = $('#tags').val();
                         var secondary_ingredients = $('#tags2').val();
-                        $.ajax({
-                                method: 'POST',
-                                dataType:'json',
-                                url: window.location.pathname+'/countRecipes',
-                                data: {ingredients: ingredients, secondary_ingredients: secondary_ingredients},
-                                success: function(datas) {
-                                        $('#count-recipes').empty();
-                                        var count = datas['count'];
-                                        if(count == 0){
-                                                $('#count-recipes').append('<div style="text-align: center; display: inline" class="alert alert-danger count-recipes">' +
-                                                        count + ' recetas. Sugerencias: '+ datas['s1'] + ', '+
-                                                        datas['s2'] + ', '+ datas['s3'] + ' </div>');
-                                        }else{
-                                                $('#count-recipes').append('<div style="text-align: center; display: inline" class="alert alert-success count-recipes">' +
-                                                        count + ' recetas. Sugerencias: '+ datas['s1'] + ', '+
-                                                        datas['s2'] + ', '+ datas['s3'] + ' </div>');
+                        if(tags.val()>0){
+                                $.ajax({
+                                        method: 'POST',
+                                        dataType:'json',
+                                        url: window.location.pathname+'/countRecipes',
+                                        data: {ingredients: ingredients, secondary_ingredients: secondary_ingredients},
+                                        success: function(datas) {
+                                                $('#count-recipes').empty();
+                                                var count = datas['count'];
+                                                if(count == 0){
+                                                        $('#count-recipes').append('<div style="text-align: center; display: inline" class="alert alert-danger count-recipes">' +
+                                                                count + ' recetas. Sugerencias: '+ datas['s1'] + ', '+
+                                                                datas['s2'] + ', '+ datas['s3'] + ' </div>');
+                                                }else{
+                                                        $('#count-recipes').append('<div style="text-align: center; display: inline" class="alert alert-success count-recipes">' +
+                                                                count + ' recetas. Sugerencias: '+ datas['s1'] + ', '+
+                                                                datas['s2'] + ', '+ datas['s3'] + ' </div>');
+                                                }
+
+                                        },
+                                        error: function(datas){
+                                                notificarError("<?= Lang::get('notifications.refresh') ?>")
                                         }
+                                });
 
-                                },
-                                error: function(datas){
-                                        notificarError("<?= Lang::get('notifications.refresh') ?>")
-                                }
-                        });
-
+                        }
                 }
                 function cont(){
                         $('#continue').prop('disabled',true);

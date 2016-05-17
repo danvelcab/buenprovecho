@@ -17,7 +17,7 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
-		$ingredients = DB::table('ingredients')->orderBy('name', 'asc')->get();
+		$ingredients = DB::table('ingredients')->where('principal','=',1)->orderBy('name', 'asc')->get();
 		return View::make('index', array ('ingredients' => $ingredients));
 	}
 

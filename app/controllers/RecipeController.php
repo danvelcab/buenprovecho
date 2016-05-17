@@ -31,9 +31,9 @@ class RecipeController extends BaseController {
 			$recipe_table = array();
 			foreach($recipes as $recipe){
 				if(!isset($recipe_table[$recipe->recipes_id])){
-					$recipe_table[$recipe->recipes_id] = 1/$recipe->num_ingredients;
+					$recipe_table[$recipe->recipes_id] = 1.5/$recipe->num_ingredients;
 				}else{
-					$recipe_table[$recipe->recipes_id] = $recipe_table[$recipe->recipes_id] + 1/$recipe->num_ingredients;
+					$recipe_table[$recipe->recipes_id] = $recipe_table[$recipe->recipes_id] + 1.5/$recipe->num_ingredients;
 				}
 			}
 			$recipes = DB::table('recipes')->join('ingredients_recipes','ingredients_recipes.recipes_id','=','recipes.id');
@@ -98,9 +98,9 @@ class RecipeController extends BaseController {
 			$recipe_table = array();
 			foreach($recipes as $recipe){
 				if(!isset($recipe_table[$recipe->recipes_id])){
-					$recipe_table[$recipe->recipes_id] = 1/$recipe->num_ingredients;
+					$recipe_table[$recipe->recipes_id] = 1.5/$recipe->num_ingredients;
 				}else{
-					$recipe_table[$recipe->recipes_id] = $recipe_table[$recipe->recipes_id] + 1/$recipe->num_ingredients;
+					$recipe_table[$recipe->recipes_id] = $recipe_table[$recipe->recipes_id] + 1.5/$recipe->num_ingredients;
 				}
 			}
 			$invalid_recipes = \Recipes\Recipes::find(array_keys($recipe_table));
@@ -151,9 +151,9 @@ class RecipeController extends BaseController {
 		$recipe_table = array();
 		foreach($recipes as $recipe){
 			if(!isset($recipe_table[$recipe->recipes_id])){
-				$recipe_table[$recipe->recipes_id] = 1/$recipe->num_ingredients;
+				$recipe_table[$recipe->recipes_id] = 1.5/$recipe->num_ingredients;
 			}else{
-				$recipe_table[$recipe->recipes_id] = $recipe_table[$recipe->recipes_id] + 1/$recipe->num_ingredients;
+				$recipe_table[$recipe->recipes_id] = $recipe_table[$recipe->recipes_id] + 1.5/$recipe->num_ingredients;
 			}
 		}
 		$recipes = DB::table('recipes')->join('ingredients_recipes','ingredients_recipes.recipes_id','=','recipes.id');
@@ -331,9 +331,9 @@ class RecipeController extends BaseController {
 			$recipe_table = array();
 			foreach($recipes as $recipe){
 				if(!isset($recipe_table[$recipe->recipes_id])){
-					$recipe_table[$recipe->recipes_id] = 1/$recipe->num_ingredients;
+					$recipe_table[$recipe->recipes_id] = 1.5/$recipe->num_ingredients;
 				}else{
-					$recipe_table[$recipe->recipes_id] = $recipe_table[$recipe->recipes_id] + 1/$recipe->num_ingredients;
+					$recipe_table[$recipe->recipes_id] = $recipe_table[$recipe->recipes_id] + 1.5/$recipe->num_ingredients;
 				}
 			}
 			$recipes = DB::table('recipes')->join('ingredients_recipes','ingredients_recipes.recipes_id','=','recipes.id');
