@@ -31,29 +31,29 @@
                 @if($i%3==1)
                         <div class="results row">
                                 @endif
-                                <div class="result col-md-4" >
+                                <div itemscope itemtype ="http://schema.org/Recipe" class="result col-md-4" >
                                         <div class="resultdiv col-md-12">
-                                                <div class ="col-md-12">
+                                                <div itemprop="photo" class ="col-md-12">
                                                         <img class="img-result thumbnail" style="width: 100%" src="{{$recipes[$i-1]->image_url}}">
                                                 </div>
                                                 <div class="description-result col-md-12">
-                                                        <div class="title-result">
+                                                        <div itemprop="name" class="title-result">
                                                                 {{$recipes[$i-1]->name}}
                                                         </div>
                                                         <div class = "col-md-12">
                                                                 <div class="time-result">
                                                                         <i class="glyphicon glyphicon-hourglass"></i>{{$recipes[$i-1]->time}} min
                                                                 </div>
-                                                                <div class="ingredients-result">
+                                                                <div itemprop="ingredients" class="ingredients-result">
                                                                         Ingredientes:
                                                                         @foreach($recipes[$i-1]->ingredients()->get() as $ingredient)
                                                                                 @if(in_array($ingredient->id, $selected_ingredients))
-                                                                                        <span class="label label-success">{{$ingredient->name}}</span>
+                                                                                        <span itemprop="ingredient" class="label label-success">{{$ingredient->name}}</span>
                                                                                 @else
                                                                                         @if(in_array($ingredient->id, $optional_selected_ingredients))
-                                                                                                <span class="label label-warning">{{$ingredient->name}}</span>
+                                                                                                <span itemprop="ingredient" class="label label-warning">{{$ingredient->name}}</span>
                                                                                         @else
-                                                                                                <span class="label label-danger">{{$ingredient->name}}</span>
+                                                                                                <span itemprop="ingredient" class="label label-danger">{{$ingredient->name}}</span>
                                                                                         @endif
                                                                                 @endif
 

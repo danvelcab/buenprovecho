@@ -16,11 +16,11 @@ Route::get('/', 'HomeController@showWelcome');
 Route::post('/findRecipes', 'RecipeController@findRecipes');
 Route::post('/findRecipesWithSuggestions', 'RecipeController@findRecipesWithSuggestions');
 Route::get('/findAllRecipes', 'RecipeController@findAllRecipes');
-Route::get('/editRecipe/{id}', 'RecipeController@editRecipe');
-Route::post('/updateRecipe', 'RecipeController@updateRecipe');
-Route::get('/createRecipe', 'RecipeController@createRecipe');
-Route::post('/saveRecipe', 'RecipeController@saveRecipe');
-Route::get('/deleteIngredient/{id_ingredient}', 'RecipeController@deleteIngredient');
+//Route::get('/editRecipe/{id}', 'RecipeController@editRecipe');
+//Route::post('/updateRecipe', 'RecipeController@updateRecipe');
+//Route::get('/createRecipe', 'RecipeController@createRecipe');
+//Route::post('/saveRecipe', 'RecipeController@saveRecipe');
+//Route::get('/deleteIngredient/{id_ingredient}', 'RecipeController@deleteIngredient');
 Route::post('/findSecondary', 'RecipeController@findSecondaryIngredients');
 Route::post('/countRecipes', 'RecipeController@countRecipes');
 

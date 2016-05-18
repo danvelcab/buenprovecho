@@ -6,14 +6,15 @@
 
         <header class="business-header">
         <div class="jumbotron">
-                <div class="title-header">
+                <h2 class="title-header">
                         ¿Con qué ingredientes cuentas?
-                </div>
+                </h2>
+                <noscript><div style="text-align: center" class="alert alert-danger">Sorry, your browser does not support JavaScript!</div></noscript>
                 <div class="choose-ingredients" id = "choose-principal-ingredients">
                         <div class="text-jumbotron">Indica almenos 3 ingredientes principales<div class="beta">(Todos los platos sugeridos contendrán por lo menos uno de ellos)</div></div>
                 </div>
-                <div class="select2-select" id = "select-principal-ingredients">
-                        <select onChange ="checkThreeIngredients()" class="js-example-basic-multiple" multiple="multiple" name="ingredients[]" id="tags">
+                <div itemscope itemtype ="http://schema.org/Recipe" class="select2-select" id = "select-principal-ingredients">
+                        <select itemprop="ingredients" onChange ="checkThreeIngredients()" class="js-example-basic-multiple" multiple="multiple" name="ingredients[]" id="tags">
                                 @foreach($ingredients as $ingredient)
                                         <option value="{{$ingredient->id}}">{{$ingredient->name}}</option>
                                 @endforeach
@@ -79,10 +80,16 @@
                 <div class="col-md-4">
                         <div class="panel panel-default">
                                 <div class="panel-heading">
-                                        <h4><i class="glyphicon glyphicon-apple"></i> Dinos qué tienes en la cocina </h4>
+                                        <h4><i class="glyphicon glyphicon-apple"></i> Dinos qué tienes en la frigorífico </h4>
                                 </div>
                                 <div class="panel-body">
-                                        <p>Mira dentro de tu frigorífico y dinos qué ingredientes tienes. Buen provecho es la mejor forma de aprovechar tus alimentos. Elige entre más de 1000 tipos de ingredientes y todo tipo de platos (cocina tradicional, fast food, tex-mex ...)</p>
+                                        <p>
+                                                Mira dentro de tu frigorífico y dinos qué ingredientes tienes.
+                                                Primero piensa en aquellos ingredientes principales que quieras gastar
+                                                y añade una lista de ingredientes adicionales con los que combinarlos.
+                                                Buen provecho es una solución para que tu comida no se heche más a perder.
+                                                Nosotros te diremos que hacer con ella antes.
+                                        </p>
                                 </div>
                         </div>
                 </div>
@@ -92,7 +99,12 @@
                                         <h4><i class="glyphicon glyphicon-book"></i> Elige una receta</h4>
                                 </div>
                                 <div class="panel-body">
-                                        <p>Te propondremos recetas que podrás elaborar a partir de los ingredientes que introduzcas. Te ahorramos pensar qué cocinar. Solo tienes que elegir la que más te guste</p>
+                                        <p>
+                                                En Buen provecho podrás elegir entre casi 1000 ingredientes y más
+                                                de 200 recetas de toda clase. (cocina tradicional, fast food, tex-mex ...)
+                                                Te propondremos únicamente recetas que podrás elaborar a partir de los
+                                                ingredientes que introduzcas. Te ahorramos pensar qué cocinar.
+                                                Solo tienes que elegir la receta que más te guste.</p>
                                 </div>
                         </div>
                 </div>
@@ -102,7 +114,14 @@
                                         <h4><i class="glyphicon glyphicon-hourglass"></i> ¡Buen provecho!</h4>
                                 </div>
                                 <div class="panel-body">
-                                        <p>Solo te queda empezar a cocinar y sacarle el mejor partido a tus alimentos. ¡Buen provecho!</p>
+                                        <p>
+                                                En tan solo unos simples pasos y en cuestion de un par de minutos,
+                                                Buen provecho te asegura encontrar numerosas recetas para aquellos
+                                                ingredientes con los que no sabes que hacer.
+                                                Buen provecho es la mejor forma de aprovechar tus alimentos.<br>
+                                                ¡Qué aproveches!
+
+                                        </p>
                                 </div>
                         </div>
                 </div>
