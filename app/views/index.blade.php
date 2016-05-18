@@ -7,7 +7,6 @@
 
         <header class="business-header">
         <div class="jumbotron">
-                <h2 class="titulo">Buen provecho</h2>
                 <h3 class="title-header">
                         ¿Con qué ingredientes cuentas?
                 </h3>

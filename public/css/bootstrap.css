@@ -6925,3 +6925,12 @@ button.close {
   text-align: center;
   margin-bottom: 10px;
 }
+.busqueda-diferente{
+  margin-top: 20px;
+}
+.ingredients{
+  margin-right: 5px;
+}
+.foto{
+  width: 100%;
+}

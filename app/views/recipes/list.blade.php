@@ -18,12 +18,12 @@
                 </div>
                 <div class="count-results col-md-12">
                         {{sizeof($recipes)}} resultados encontrados
-                        <button style="margin-top: 20px" onclick="window.location = '../public', ga('send', 'event', '_trackEvent', 'busqueda_diferente', '', '0', '')" class="btn btn-primary center-block btn-lg" >Empezar nueva búsqueda</button>
+                        <button class="busqueda-diferente" onclick="window.location = '../public', ga('send', 'event', '_trackEvent', 'busqueda_diferente', '', '0', '')" class="btn btn-primary center-block btn-lg" >Empezar nueva búsqueda</button>
                 </div>
                 <div class="count-results col-md-12">
-                        <span style="margin-right: 5px" class="label label-success"> Principal </span>
+                        <span class="ingredient label label-success"> Principal </span>
                         <span class="label label-warning"> Secundario </span>
-                        <span style="margin-left: 5px" class="label label-danger"> No coincidencia </span>
+                        <span class="ingredient label label-danger"> No coincidencia </span>
                 </div>
                 <hr>
         </div>
@@ -34,7 +34,7 @@
                                 <div itemscope itemtype ="http://schema.org/Recipe" class="result col-md-4" >
                                         <div class="resultdiv col-md-12">
                                                 <div itemprop="photo" class ="col-md-12">
-                                                        <img class="img-result thumbnail" style="width: 100%" src="{{$recipes[$i-1]->image_url}}">
+                                                        <img class="img-result thumbnail foto"  src="{{$recipes[$i-1]->image_url}}">
                                                 </div>
                                                 <div class="description-result col-md-12">
                                                         <div itemprop="name" class="title-result">
