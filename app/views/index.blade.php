@@ -7,9 +7,9 @@
 
         <header class="business-header">
         <div class="jumbotron">
-                <h3 class="title-header">
+                <h2 class="title-header">
                         ¿Con qué ingredientes cuentas?
-                </h3>
+                </h2>
                 <noscript><div class="alerta alert alert-danger">Sorry, your browser does not support JavaScript!</div></noscript>
                 <div class="choose-ingredients" id = "choose-principal-ingredients">
                         <div class="text-jumbotron">Indica almenos 3 ingredientes principales<div class="beta">(Todos los platos sugeridos contendrán por lo menos uno de ellos)</div></div>
