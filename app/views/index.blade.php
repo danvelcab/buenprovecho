@@ -4,12 +4,14 @@
 
 @section('content')
 
+
         <header class="business-header">
         <div class="jumbotron">
-                <h2 class="title-header">
+                <h2 class="titulo">Buen provecho</h2>
+                <h3 class="title-header">
                         ¿Con qué ingredientes cuentas?
-                </h2>
-                <noscript><div style="text-align: center" class="alert alert-danger">Sorry, your browser does not support JavaScript!</div></noscript>
+                </h3>
+                <noscript><div class="alerta alert alert-danger">Sorry, your browser does not support JavaScript!</div></noscript>
                 <div class="choose-ingredients" id = "choose-principal-ingredients">
                         <div class="text-jumbotron">Indica almenos 3 ingredientes principales<div class="beta">(Todos los platos sugeridos contendrán por lo menos uno de ellos)</div></div>
                 </div>
@@ -48,11 +50,11 @@
                 </div>
                 <div class="center-block">
                         <div class="row">
-                                <div class="col-md-12 col-lg-12" style="text-align: center; margin-bottom: 10px">
+                                <div class="col-md-12 col-lg-12 find-recipe">
                                 <button  id="buttonFindSuggestions" disabled onClick="findSuggestions()" class="btn btn-primary btn-lg " >
                                         Buscar recetas</button>
                                 </div>
-                                <div class="col-md-12 col-lg-12" style="text-align: center">
+                                <div class="col-md-12 col-lg-12 restart">
                                 <a href=""><button  id="empezar" class="btn btn-primary btn-md" >
                                         Empezar de nuevo</button></a>
                                 </div>
@@ -142,7 +144,7 @@
                                         </div>
                                 </div>
                                 <div class="modal-footer">
-                                        <div style="text-align: center" class="alert alert-danger">Al indicar que no tienes un ingredientes excluyes todas aquellas recetas que lo contengan</div>
+                                        <div class="alerta alert alert-danger">Al indicar que no tienes un ingredientes excluyes todas aquellas recetas que lo contengan</div>
                                         <button type="submit" onClick="ga('send', 'event', '_trackEvent', 'buscar_landing', '', '0', '');" class="btn btn-primary">Buscar recetas</button>
                                 </div>
                                 </form>
@@ -177,11 +179,11 @@
                                                 $('#count-recipes').empty();
                                                 var count = datas['count'];
                                                 if(count == 0){
-                                                        $('#count-recipes').append('<div style="text-align: center; display: inline" class="alert alert-danger count-recipes">' +
+                                                        $('#count-recipes').append('<div class="alert alert-danger count-recipes count-recipes2">' +
                                                                 count + ' recetas. Sugerencias: '+ datas['s1'] + ', '+
                                                                 datas['s2'] + ', '+ datas['s3'] + ' </div>');
                                                 }else{
-                                                        $('#count-recipes').append('<div style="text-align: center; display: inline" class="alert alert-success count-recipes">' +
+                                                        $('#count-recipes').append('<div class="alert alert-success count-recipes count-recipes2">' +
                                                                 count + ' recetas. Sugerencias: '+ datas['s1'] + ', '+
                                                                 datas['s2'] + ', '+ datas['s3'] + ' </div>');
                                                 }

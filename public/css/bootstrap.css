@@ -59,10 +59,7 @@ strong {
 dfn {
   font-style: italic;
 }
-h1 {
-  margin: .67em 0;
-  font-size: 2em;
-}
+
 mark {
   color: #000;
   background: #ff0;
@@ -6901,4 +6898,30 @@ button.close {
   padding-left: 2px;
   padding-right: 2px;
   margin-bottom: 20px;
+}
+
+.titulo {
+  color: #f9f9ff;
+  font-size:65px;
+  text-align: center;
+  margin-top:5px;
+}
+@media screen and (max-width: 568px) {
+  .titulo {
+    font-size:30px;
+  }
+}
+.alerta {
+  text-align: center;
+}
+.count-recipes2{
+  text-align: center;
+  display: inline;
+}
+.restart{
+  text-align: center
+}
+.find-recipes{
+  text-align: center;
+  margin-bottom: 10px;
 }
