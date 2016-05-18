@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Buen provecho. Dinos que tienes en frigorífico y te diremos que cocinar">
+    <meta name="description" content="Buen provecho. Dinos que tienes en frigorífico y te diremos que cocinar. En Buen provecho no queremos que tus alimentos se pongan en mal estado">
     <meta name="author" content="Daniel Velazquez">
 
     <script>
