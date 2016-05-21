@@ -42,14 +42,18 @@
     <!--start Select2-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
+    {{--{{ HTML::style('css/normalize.css') }}--}}
+    {{--{{ HTML::style('css/foundation.min.css') }}--}}
     {{--end Select2--}}
     {{--<![endif]-->--}}
 
     {{HTML::script('js/jquery-scrolltofixed.js')}}
     {{HTML::script('js/noty/packaged/jquery.noty.packaged.js')}}
     {{HTML::script('js/noty/layouts/top.js')}}
-    {{HTML::script('js/noty/layouts/topLeft.js')}}
-    {{HTML::script('js/noty/layouts/topRight.js')}}
+    {{ HTML::script('js/angular.js') }}
+    {{ HTML::script('js/app.js') }}
+    {{ HTML::script('js/controllers/recipeController.js') }}
+
     <script type="text/javascript">
         function notificar(texto) {
             var n = noty({

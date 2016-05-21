@@ -6,7 +6,7 @@
 
 
         <header class="business-header">
-        <div class="jumbotron">
+        <div class="jumbotron" ng-app="app" ng-controller="RecipeController">
                 <h2 class="title-header">
                         ¿Con qué ingredientes cuentas?
                 </h2>
@@ -15,7 +15,7 @@
                         <div class="text-jumbotron">Indica almenos 3 ingredientes principales<div class="beta">(Todos los platos sugeridos contendrán por lo menos uno de ellos)</div></div>
                 </div>
                 <div itemscope itemtype ="http://schema.org/Recipe" class="select2-select" id = "select-principal-ingredients">
-                        <select itemprop="ingredients" onChange ="checkThreeIngredients()" class="js-example-basic-multiple" multiple="multiple" name="ingredients[]" id="tags">
+                        <select ng-model="ingredients" itemprop="ingredients" onChange ="checkThreeIngredients()" class="js-example-basic-multiple" multiple="multiple" name="ingredients[]" id="tags">
                                 @foreach($ingredients as $ingredient)
                                         <option value="{{$ingredient->id}}">{{$ingredient->name}}</option>
                                 @endforeach
@@ -27,7 +27,7 @@
                 </div>
 
                 <div id="button">
-                        <button id="continue" disabled onClick="cont()" class="btn btn-primary center-block btn-lg" >
+                        <button id="continue" ng-click="findSecondary()" disabled class="btn btn-primary center-block btn-lg" >
                                 Continuar</button>
                 </div>
                 <div class="row">
@@ -39,6 +39,10 @@
                 </div>
                 <div class="select2-select" id = "select-secondary-ingredients">
                         <select onChange ="checkTwoIngredients()" class="js-example-basic-multiple" multiple="multiple" name="ingredients[]" id="tags2">
+                                <option ng-repeat="ing in secondary"
+                                        value="@{{ing.id}}">
+                                        @{{ing.name}}
+                                </option>
                         </select>
                         <script type="text/javascript">
                                 $(".js-example-basic-multiple").select2();
@@ -53,9 +57,12 @@
                                 <button  id="buttonFindSuggestions" disabled onClick="findSuggestions()" class="btn btn-primary btn-lg " >
                                         Buscar recetas</button>
                                 </div>
+                                <div class="col-md-12 col-lg-12 restart text-jumbotron3" id="o">
+                                        o
+                                </div>
                                 <div class="col-md-12 col-lg-12 restart">
-                                <a href=""><button  id="empezar" class="btn btn-primary btn-md" >
-                                        Empezar de nuevo</button></a>
+                                <a href="" id="empezar">
+                                        <strong>Empezar de nuevo</strong></a>
                                 </div>
                                 <script type="text/javascript">
                                         $('#count-results').hide();
@@ -63,6 +70,7 @@
                                         $('#select-secondary-ingredients').hide();
                                         $('#buttonFindSuggestions').hide();
                                         $('#empezar').hide();
+                                        $('#o').hide();
                                 </script>
                         </div>
                 </div>
@@ -207,12 +215,6 @@
                                         if(datas['error']){
                                                 notificar(datas['message']);
                                         }else{
-                                                $.each(datas['secondary'], function (i, data) {
-                                                        $('#tags2').append($('<option>', {
-                                                                value: data['id'],
-                                                                text : data['name']
-                                                        }));
-                                                });
                                                 $('#choose-principal-ingredients').hide();
                                                 $('#select-principal-ingredients').hide();
                                                 $('#tags').hide();
@@ -222,6 +224,7 @@
                                                 $('#select-secondary-ingredients').show();
                                                 $('#buttonFindSuggestions').show();
                                                 $('#empezar').show();
+                                                $('#o').show();
                                                 $('.select2-selection').css('border-width',1);
                                                 $('.select2-selection').css('border-color','rgb(255,035,001)');
                                                 notificar("Se han encontrado "+datas['num_recipes']+" recetas con estos ingredientes principales." +

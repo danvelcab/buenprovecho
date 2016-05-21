@@ -925,11 +925,11 @@ $.noty.layouts.topCenter = {
         style   : function() {
             $(this).css({
                 top          : 20,
-                left         : 0,
+                left         : '5',
                 position     : 'fixed',
-                width        : '90%',
+                width        : '100%',
                 height       : 'auto',
-                margin       : 0,
+                marginLeft       : '5%',
                 padding      : 0,
                 listStyleType: 'none',
                 zIndex       : 10000000

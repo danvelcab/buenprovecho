@@ -6782,6 +6782,12 @@ button.close {
   margin-top: -20px;
   text-align: center;
 }
+.text-jumbotron3{
+  color: #f9f9ff;
+  font-size: 20px;
+  margin-top: 0px;
+  text-align: center;
+}
 .select2-select{
   text-align: center;
   width: 100%;
@@ -6919,9 +6925,11 @@ button.close {
   display: inline;
 }
 .restart{
-  text-align: center
+  text-align: center;
+  display: inline;
+  font-size: 17px;
 }
-.find-recipes{
+.find-recipe{
   text-align: center;
   margin-bottom: 10px;
 }
