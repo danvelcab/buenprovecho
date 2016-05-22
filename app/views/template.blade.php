@@ -23,16 +23,17 @@
     <title>Buen provecho - ¿qué hay para comer?</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    {{HTML::style('css/bootstrap.css')}}
 
     <!-- Custom CSS -->
-    <link href="css/modern-business.css" rel="stylesheet">
+    {{HTML::style('css/modern-business.css')}}
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="bootstrap-switch/css/bootstrap3/bootstrap-switch.css" rel="stylesheet">
+    {{HTML::style('font-awesome/css/font-awesome.min.css')}}
+    {{HTML::style('bootstrap-switch/css/bootstrap3/bootstrap-switch.css')}}
+
     {{HTML::script('/js/jquery.js')}}
-    <script src="bootstrap-switch/js/bootstrap-switch.js"></script>
+    {{HTML::script('bootstrap-switch/js/bootstrap-switch.js')}}
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -91,7 +92,7 @@
 
 <!-- /.container -->
 
-<script src="js/bootstrap.min.js"></script>
+{{HTML::script('js/bootstrap.min.js')}}
 
 </body>
 

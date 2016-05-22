@@ -6836,6 +6836,14 @@ button.close {
   margin-top: 5px;
 
 }
+.title-result-post{
+  text-align: center;
+  color: #526f4e;
+  font-size: 30px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+
+}
 .button-result{
   text-align: center;
   margin-top:15px;
@@ -6941,4 +6949,17 @@ button.close {
 }
 .foto{
   width: 100%;
+}
+.subtitle{
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.infografia{
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+.parrafo{
+  margin-top: 10px;
+  margin-bottom: 20px;
 }

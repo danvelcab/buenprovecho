@@ -16,6 +16,8 @@ Route::get('/', 'HomeController@showWelcome');
 Route::post('/findRecipes', 'RecipeController@findRecipes');
 Route::post('/findRecipesWithSuggestions', 'RecipeController@findRecipesWithSuggestions');
 Route::get('/findAllRecipes', 'RecipeController@findAllRecipes');
+Route::get('/blog', 'BlogController@listPosts');
+Route::get('/show/{id}', 'BlogController@show');
 //Route::get('/editRecipe/{id}', 'RecipeController@editRecipe');
 //Route::post('/updateRecipe', 'RecipeController@updateRecipe');
 //Route::get('/createRecipe', 'RecipeController@createRecipe');
