@@ -54,10 +54,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'mysql.hostinger.es',
-			'database'  => 'u436995132_buenp',
-			'username'  => 'u436995132_buenp',
-			'password'  => 'BuEnPrOvEcHo',
+			'host'      => 'localhost',
+			'database'  => 'cook',
+			'username'  => 'root',
+			'password'  => 'root',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

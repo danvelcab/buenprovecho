@@ -18,7 +18,7 @@
                 </div>
                 <div class="count-results col-md-12">
                         {{sizeof($recipes)}} resultados encontrados
-                        <button class="busqueda-diferente" onclick="window.location = '../public', ga('send', 'event', '_trackEvent', 'busqueda_diferente', '', '0', '')" class="btn btn-primary center-block btn-lg" >Empezar nueva búsqueda</button>
+                        <button onclick="window.location = '../public', ga('send', 'event', '_trackEvent', 'busqueda_diferente', '', '0', '')" class="btn btn-primary center-block btn-lg busqueda-diferente" >Empezar nueva búsqueda</button>
                 </div>
                 <div class="count-results col-md-12">
                         <span class="ingredient label label-success"> Principal </span>
