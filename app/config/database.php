@@ -55,8 +55,8 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'mysql.hostinger.es',
-			'database'  => 'u306152639_buenp',
-			'username'  => 'u306152639_buenp',
+			'database'  => 'u436995132_buenp',
+			'username'  => 'u436995132_buenp',
 			'password'  => 'BuEnPrOvEcHo',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
