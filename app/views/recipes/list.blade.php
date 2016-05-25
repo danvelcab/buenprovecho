@@ -29,6 +29,17 @@
         </div>
         @for($i = 1;$i<=sizeof($recipes);$i++)
                 @if($i%3==1)
+                        @if($i<=12)
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <!-- Primeros anuncios -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:728px;height:90px"
+                             data-ad-client="ca-pub-5060585163302076"
+                             data-ad-slot="9012834343"></ins>
+                        <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                        @endif
                         <div class="results row">
                                 @endif
                                 <div itemscope itemtype ="http://schema.org/Recipe" class="result col-md-4" >
