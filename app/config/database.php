@@ -54,7 +54,7 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
+			'host'      => 'mysql.hostinger.es',
 			'database'  => 'u436995132_buenp',
 			'username'  => 'u436995132_buenp',
 			'password'  => 'BuEnPrOvEcHo',

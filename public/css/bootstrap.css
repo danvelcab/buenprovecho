@@ -6965,6 +6965,7 @@ button.close {
 }
 .ads{
   text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
+}
+.brand{
+  color:gray;
 }
