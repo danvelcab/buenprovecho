@@ -11,8 +11,7 @@ app.controller('RecipeController', ['$scope','$http', function($scope, $http) {
             }else {
                 $scope.secondary = data.secondary;//así enviamos los posts a la vista
                 $('#choose-principal-ingredients').hide();
-                $('#select-principal-ingredients').hide();
-                $('#tags').hide();
+                $('#tags').prop('disabled',true);
                 $('#button').empty();
                 $('#count-results').show();
                 $('#choose-secondary-ingredients').show();
@@ -20,8 +19,8 @@ app.controller('RecipeController', ['$scope','$http', function($scope, $http) {
                 $('#buttonFindSuggestions').show();
                 $('#empezar').show();
                 $('#o').show();
-                $('.select2-selection').css('border-width', 1);
-                $('.select2-selection').css('border-color', 'rgb(255,035,001)');
+                $('#tags2').css('border-width', 1);
+                $('#select2-selection').css('border-color', 'rgb(255,035,001)');
                 notificar("Se han encontrado " + data['num_recipes'] + " recetas con estos ingredientes principales." +
                     " Índicanos algunos ingredientes adicionales para saber si puedes cocinarlas");
             }
