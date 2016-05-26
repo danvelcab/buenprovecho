@@ -3,7 +3,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <div class="navbar-brand">
-                Buen provecho <span class="beta">(Beta)</span>
+                <a href="http://buenprovecho.xyz">Buen provecho <span class="beta">(Beta)</span></a>
             </div>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
