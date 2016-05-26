@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="96e259a9-0c67-4a61-aae5-7466a7214e27" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/database.php" afterPath="$PROJECT_DIR$/app/config/database.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/header.blade.php" afterPath="$PROJECT_DIR$/app/views/header.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="cook.iws" />
@@ -39,8 +38,8 @@
       <file leaf-file-name="database.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/config/database.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.115385">
-              <caret line="59" column="32" selection-start-line="59" selection-start-column="32" selection-end-line="59" selection-end-column="32" />
+            <state vertical-scroll-proportion="-9.807693">
+              <caret line="57" column="44" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -50,7 +49,7 @@
         <entry file="file://$PROJECT_DIR$/app/views/header.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.23287672">
-              <caret line="5" column="48" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
+              <caret line="5" column="49" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -527,7 +526,13 @@
       <option name="project" value="LOCAL" />
       <updated>1464252245453</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="redireccion titulo">
+      <created>1464254342330</created>
+      <option name="number" value="00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1464254342330</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -588,7 +593,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="responsive title" />
     <MESSAGE value="seguimiento de analytics" />
     <MESSAGE value="anadida una función para revisar aquellas recetas sin tiempo. Hay un error que hace que en el scrapping no se cojan los ingredientes de estas recetas. Tras pasar el scrapping general solo hay ejecutar la nueva función reviseRecipes" />
     <MESSAGE value="Antes de la primera busqueda te sugiere ingredientes que combinan con los introducidos" />
@@ -613,7 +617,8 @@
     <MESSAGE value="chat en directo" />
     <MESSAGE value="anuncios google adsense" />
     <MESSAGE value="Mejorado selector de ingredientes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mejorado selector de ingredientes" />
+    <MESSAGE value="redireccion titulo" />
+    <option name="LAST_COMMIT_MESSAGE" value="redireccion titulo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1071,8 +1076,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/database.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.115385">
-          <caret line="59" column="32" selection-start-line="59" selection-start-column="32" selection-end-line="59" selection-end-column="32" />
+        <state vertical-scroll-proportion="-9.807693">
+          <caret line="57" column="44" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="44" />
           <folding />
         </state>
       </provider>
@@ -1080,7 +1085,7 @@
     <entry file="file://$PROJECT_DIR$/app/views/header.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.23287672">
-          <caret line="5" column="48" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
+          <caret line="5" column="49" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="49" />
           <folding />
         </state>
       </provider>
